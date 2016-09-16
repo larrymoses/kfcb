@@ -393,7 +393,8 @@
                                                                         <td><strong><a id="occurance1">0</a></strong></td>
                                                                         <td> <div class="form-group">
                                                                                 <select class="form-control input-xsmall themeSelect">
-                                                                                    <option value="" selected>Select</option>
+                                                                                    <option value="0" selected>0
+                                                                                    </option>
                                                                                     <option value="1">1</option>
                                                                                     <option value="2">2</option>
                                                                                     <option value="3">3</option>
@@ -409,7 +410,8 @@
                                                                         <td><strong><a id="occurance2">0</a></strong></td>
                                                                         <td> <div class="form-group">
                                                                                 <select class="form-control input-xsmall themeSelect">
-                                                                                    <option value="" selected>Select</option>
+                                                                                    <option value="0" selected>0
+                                                                                    </option>
                                                                                     <option value="1">1</option>
                                                                                     <option value="2">2</option>
                                                                                     <option value="3">3</option>
@@ -426,7 +428,8 @@
                                                                         <td><strong><a id="occurance3">0</a></strong></td>
                                                                         <td> <div class="form-group">
                                                                                 <select class="form-control input-xsmall themeSelect">
-                                                                                    <option value="" selected>Select</option>
+                                                                                    <option value="0" selected>0
+                                                                                    </option>
                                                                                     <option value="1">1</option>
                                                                                     <option value="2">2</option>
                                                                                     <option value="3">3</option>
@@ -442,7 +445,8 @@
                                                                         <td><strong><a id="occurance4">0</a></strong></td>
                                                                         <td> <div class="form-group">
                                                                                 <select class="form-control input-xsmall themeSelect">
-                                                                                    <option value="" selected>Select</option>
+                                                                                    <option value="0" selected>0
+                                                                                    </option>
                                                                                     <option value="1">1</option>
                                                                                     <option value="2">2</option>
                                                                                     <option value="3">3</option>
@@ -459,7 +463,8 @@
                                                                         <td><strong><a id="occurance5">0</a></strong></td>
                                                                         <td> <div class="form-group">
                                                                                 <select class="form-control input-xsmall themeSelect">
-                                                                                    <option value="" selected>Select</option>
+                                                                                    <option value="0" selected>0
+                                                                                    </option>
                                                                                     <option value="1">1</option>
                                                                                     <option value="2">2</option>
                                                                                     <option value="3">3</option>
@@ -476,7 +481,8 @@
                                                                         <td><strong><a id="occurance6">0</a></strong></td>
                                                                         <td> <div class="form-group">
                                                                                 <select class="form-control input-xsmall themeSelect">
-                                                                                    <option value="" selected>Select</option>
+                                                                                    <option value="0" selected>0
+                                                                                    </option>
                                                                                     <option value="1">1</option>
                                                                                     <option value="2">2</option>
                                                                                     <option value="3">3</option>
@@ -702,13 +708,13 @@
             /* Stop button */
             stop.onclick = function() {
                 clearTimeout(t);
-            }
+            };
 
             /* Clear button */
             clear.onclick = function() {
                 h1.textContent = "00:00:00";
                 seconds = 0; minutes = 0; hours = 0;
-            }
+            };
 
             $("#btnTheme1").click(function () {
                 var id = "<?php echo $film->id; ?>";
@@ -721,7 +727,7 @@
                 var filmID = "<?php echo $film->id; ?>"; //get film id
                 var userID= "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
-                var dataString ={filmID: filmID, userID: userID,themeID:themeID, _token:token,time_at:time_at}
+                var dataString = {filmID: filmID, userID: userID, themeID: themeID, _token: token, time_at: time_at};
                 // AJAX Code To Submit Form.
                 $.ajax({
                     type: "POST",
@@ -745,7 +751,7 @@
                 var filmID = "<?php echo $film->id; ?>"; //get film id
                 var userID= "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
-                var dataString ={filmID: filmID, userID: userID,themeID:themeID, _token:token,time_at:time_at}
+                var dataString = {filmID: filmID, userID: userID, themeID: themeID, _token: token, time_at: time_at};
                 // AJAX Code To Submit Form.
                 $.ajax({
                     type: "POST",
@@ -768,7 +774,7 @@
                 var filmID = "<?php echo $film->id; ?>"; //get film id
                 var userID= "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
-                var dataString ={filmID: filmID, userID: userID,themeID:themeID, _token:token,time_at:time_at}
+                var dataString = {filmID: filmID, userID: userID, themeID: themeID, _token: token, time_at: time_at};
                 // AJAX Code To Submit Form.
                 $.ajax({
                     type: "POST",
@@ -791,7 +797,7 @@
                 var filmID = "<?php echo $film->id; ?>"; //get film id
                 var userID= "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
-                var dataString ={filmID: filmID, userID: userID,themeID:themeID, _token:token,time_at:time_at}
+                var dataString = {filmID: filmID, userID: userID, themeID: themeID, _token: token, time_at: time_at};
                 // AJAX Code To Submit Form.
                 $.ajax({
                     type: "POST",
@@ -815,7 +821,7 @@
                 var filmID = "<?php echo $film->id; ?>"; //get film id
                 var userID= "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
-                var dataString ={filmID: filmID, userID: userID,themeID:themeID, _token:token,time_at:time_at}
+                var dataString = {filmID: filmID, userID: userID, themeID: themeID, _token: token, time_at: time_at};
                 // AJAX Code To Submit Form.
                 $.ajax({
                     type: "POST",
@@ -839,7 +845,7 @@
                 var filmID = "<?php echo $film->id; ?>"; //get film id
                 var userID= "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
-                var dataString ={filmID: filmID, userID: userID,themeID:themeID, _token:token,time_at:time_at}
+                var dataString = {filmID: filmID, userID: userID, themeID: themeID, _token: token, time_at: time_at};
                 // AJAX Code To Submit Form.
                 $.ajax({
                     type: "POST",
@@ -862,7 +868,7 @@
                         {mData: 'name'},
                     ]
                 } );
-            }
+            };
             drawDataTable1 = function(){
                 var filmID = "<?php echo $film->id; ?>"; //get film id
                 oTable =  $('#viewThemeTimeOccurance').DataTable( {
@@ -875,7 +881,7 @@
                         {mData: 'time_at'},
                     ]
                 } );
-            }
+            };
 
             drawDataTable();
             drawDataTable1();
@@ -952,8 +958,8 @@
                 var editNotifications = $("#editNotifications");
                 var createNotification = $("#createNotification");
                 var frm=("frmCreate");
-                var index="<?php echo $synopsis;?>"
-                var me="<?php echo $me;?>"
+                var index = "<?php echo $synopsis;?>";
+                var me = "<?php echo $me;?>";
                 editNotifications.hide();
                 var filmID = "<?php echo $film->id; ?>";
                 var filmName = "<?php echo $film->name; ?>";
@@ -985,7 +991,7 @@
                                     createNotification.hide().find('#ul').empty();
                                     $.each(data.errors,function(index,error){
                                         createNotification.html('<div class="alert alert-danger">'+'<li>'+data.error+'</li>' +'</div>');
-                                    })
+                                    });
                                     createNotification.show();
                                 }
                                 break;
@@ -1008,7 +1014,7 @@
                 var name = $(this).data('name'); // get the Name
                 var filmID = "<?php echo $film->id; ?>"; //get film id
                 var userID= "<?php echo Auth::User()->id?>";
-                var dataString ={filmID: filmID, paramID: paramID, userID: userID,name:name}
+                var dataString = {filmID: filmID, paramID: paramID, userID: userID, name: name};
 
                 // AJAX Code To Submit Form.
                 $.ajax({
@@ -1028,7 +1034,7 @@
                 var name = $(this).data('name'); // get the Name
                 var filmID = "<?php echo $film->id; ?>"; //get film id
                 var userID= "<?php echo Auth::User()->id?>";
-                var dataString ={filmID: filmID, paramID: paramID, userID: userID,name:name}
+                var dataString = {filmID: filmID, paramID: paramID, userID: userID, name: name};
 
                 // // AJAX Code To Submit Form.
                 // $.ajax({
@@ -1057,7 +1063,7 @@
                 var filmID = "<?php echo $film->id; ?>"; //get film id
                 var userID= "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
-                var dataString ={filmID: filmID, paramID: paramID, userID: userID,name:name,_token :token}
+                var dataString = {filmID: filmID, paramID: paramID, userID: userID, name: name, _token: token};
 
                 if(this.checked) {
                     $.ajax({

@@ -48,6 +48,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- BEGIN THEME GLOBAL STYLES -->
     <link href="{{asset('assets/global/css/components.min.css')}}" rel="stylesheet" id="style_components" type="text/css" />
     <link href="{{asset('assets/global/css/plugins.min.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('assets/global/plugins/select2/css/select2.css')}}"/>
     <!-- END THEME GLOBAL STYLES -->
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="{{asset('assets/layouts/layout2/css/layout.min.css')}}" rel="stylesheet" type="text/css" />
@@ -208,6 +209,30 @@ License: You must have a valid license purchased only from themeforest(the above
                         <span class="title">Assign Examiner to Film for Synopsis Capture</span>
                     </a>
                 </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="fa fa-cog"></i>
+                        <span class="title">Settings</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="{{url('settings/themes')}}" class="nav-link ">
+                                <span class="title">Themes</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="{{url('settings/parameters')}}" class="nav-link ">
+                                <span class="title">Parameters</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="{{url('auditlogs')}}" class="nav-link ">
+                                <span class="title">Audit Logs</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
             <!-- END SIDEBAR MENU -->
         </div>
@@ -294,11 +319,15 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- END THEME GLOBAL SCRIPTS -->
 <!-- BEGIN PAGE LEVEL SCRIPTS -->
 <script src="{{asset('assets/pages/scripts/dashboard.min.js')}}" type="text/javascript"></script>
+<script type="text/javascript" src="{{asset('assets/global/plugins/select2/js/select2.min.js')}}"></script>
 <!-- END PAGE LEVEL SCRIPTS -->
 <!-- BEGIN THEME LAYOUT SCRIPTS -->
 <script src="{{asset('assets/layouts/layout2/scripts/layout.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/layouts/layout2/scripts/demo.min.js')}}" type="text/javascript"></script>
 <script src="{{asset('assets/layouts/global/scripts/quick-sidebar.min.js')}}" type="text/javascript"></script>
+<script type="text/javascript">
+    $(".js-example-basic-single").select2();
+</script>
 <!-- END THEME LAYOUT SCRIPTS -->
 </body>
 

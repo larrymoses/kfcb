@@ -16,7 +16,16 @@ Route::group(['middleware' => 'auth'], function () {
 });
 Route::get('/send', 'EmailController@send');
 Route::group(['middleware' => ['super']], function () {
-	
+	//settings 
+	Route::get('settings/themes', 'SettingsController@themes');
+	Route::get('settings/themes/{id}', 'SettingsController@themesbyID');
+	Route::post('settings/themes', 'SettingsController@savethemes');
+	Route::put('settings/themes/{id}', 'SettingsController@updatethemes');
+	Route::get('settings/parameters', 'SettingsController@parameters');
+	Route::post('settings/parameters', 'SettingsController@saveparameters');
+	Route::get('get/parameters', 'SettingsController@getParameters');
+	Route::get('get/themes', 'SettingsController@getThemes');
+
 	Route::get('getfilm/{id}', 'FilmController@getEditData');
 	Route::get('getParameter/{id}', 'RatersController@getParameter');
 	Route::post('rate/{id}', 'RatersController@store');
