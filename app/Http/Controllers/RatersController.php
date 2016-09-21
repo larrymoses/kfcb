@@ -100,7 +100,7 @@ class RatersController extends Controller
             return response()->json([
                     'success'=>false,
                     'status'=>'00',
-                    'message'=>'Congradulations! Rating Completed'
+                    'message'=>'Congratulations! Rating Completed'
                 ]);
         }
     }
