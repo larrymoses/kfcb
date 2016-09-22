@@ -109,7 +109,7 @@
                         <div class="portlet box green">
                             <div class="portlet-title">
                                 <div class="caption">
-                                    <i class="fa fa-gift"></i>Enter Own Synopsis and Ratings  </div>
+                                    <i class="fa fa-gift"></i>Enter Final Ratings and Comment/Justification </div>
                             </div>
                             <div class="portlet-body form">
                                 <!-- BEGIN FORM-->
@@ -165,10 +165,10 @@
                                         <div class="row">
                                             <div class="col-md-offset-3 col-md-9">
                                                 <!-- <button type="submit" class="btn btn-circle green">Submit</button> -->
-                                                <a href="javascript:;" class="btn green button-submit" id="btnSubmitAll"> Submit
+                                                <a href="javascript:;" class="btn green button-submit btn-circle" id="btnSubmitAll"> Submit
                                                     <i class="fa fa-check"></i>
                                                 </a>   
-                                                <a class="btn red btn-outline btn-circle sbold" data-toggle="modal" data-backdrop="static" data-keyboard="false" href="#basic"> Reject Film Rating</a>
+                                                {{--<a class="btn red btn-outline btn-circle sbold" data-toggle="modal" data-backdrop="static" data-keyboard="false" href="#basic"> Reject Film Rating</a>--}}
                                                 <button type="button" class="btn btn-circle grey-salsa btn-outline">Cancel</button>
                                             </div>
                                         </div>

@@ -347,11 +347,7 @@
                     <form id="frmActivate" class="form-horizontal form-bordered">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <div class="panel-btns">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                                    <a href="" class="panel-minimize tooltips" data-toggle="tooltip" title="" data-original-title="Minimize Panel"><i class="fa fa-minus"></i></a>
-                                    <a href="" class="panel-close tooltips" data-toggle="tooltip" title="" data-original-title="Close Panel"><i class="fa fa-times"></i></a>
-                                </div><!-- panel-btns -->
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                 <p> Are you sure you want to Approve <code><label id="activateUser"></label></code> ?</p>
                                 <input type="hidden" id="activateId">
                             </div>
@@ -481,37 +477,29 @@
             $("#btnCreate").click(function () {
                 var createNotification = $("#createNotification");
                 createNotification.hide();
+                var btn = $('#btnCreate');
                 var frm = $('#frmCreate');
                 var data = frm.serialize();
                 $.ajax({
                     method: "POST",
                     url: "users",
                     data: data,
-                    success:function(data,status){
-                        switch (status) {
-                            case "success":
-                                if (data.status === '00') {
-                                    frm.hide();
-                                    createNotification.html('<div class="alert alert-success" >' + data.message + '</div>');
-                                    createNotification.show();
-                                    $("#btnCreate").hide();
-                                } else if (data.status === '01') {
-                                    createNotification.hide().find('#ul').empty();
-                                    $.each(data.errors,function(index,error){
-                                        createNotification.html('<div class="alert alert-danger">'+'<li>'+data.error+'</li>' +'</div>');
-                                    })
-                                    createNotification.show();
-                                }
-                                break;
-                            case "failed":
-                                createNotification.html('<div class="alert alert-danger">' + data.errors + ' </div>');
-                                createNotification.show();
-                                frm.hide();
-                                break;
-                            default :
-                                alert("do nothing");
+                    success: function(data,status){
+                        frm.hide();
+                        btn.hide();
+                        createNotification.show();
+                        createNotification.html('<div class="alert alert-success">'+'<code>'+name+'</code> Created Successfully' +'</div>');
+                    },
+                    error: function(data){
+                        // Error...
+                        var errors = data.responseJSON;
 
-                        }
+                        console.log(errors);
+
+                        $.each(errors, function(index, value) {
+                            createNotification.show();
+                            createNotification.html('<div class="alert alert-danger">'+'<li>'+value+'</li>' +'</div>');
+                        });
                     }
                 });
             });

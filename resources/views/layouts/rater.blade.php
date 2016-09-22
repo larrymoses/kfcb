@@ -1,15 +1,5 @@
 <!DOCTYPE html>
-<!--
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.5
-Version: 4.5.2
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
+
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -42,6 +32,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <link href="{{asset('assets/global/plugins/bootstrap-fileinput/bootstrap-fileinput.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/global/plugins/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('assets/global/plugins/select2/css/select2-bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- DATA TABLES -->
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/js/datatables/media/css/jquery.dataTables.min.css')}}" />
@@ -104,9 +95,10 @@ License: You must have a valid license purchased only from themeforest(the above
                             
                             <li class="divider"> </li>
                             <li>
-                                <a href="{{url('lock')}}">
-                                    <i class="icon-lock"></i> Lock Screen </a>
+                                <a href="{{url('password')}}">
+                                    <i class="icon-lock"></i> Change Password </a>
                             </li>
+                            <li class="divider"> </li>
                             <li>
                                 <a href="{{url('logout')}}">
                                     <i class="icon-key"></i> Log Out </a>
@@ -148,23 +140,26 @@ License: You must have a valid license purchased only from themeforest(the above
             <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
              
                 <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
+                    <a href="{{url('rater')}}" class="nav-link nav-toggle">
                                 <i class="icon-film"></i>
-                                <span class="title">Film Management</span>
+                                <span class="title">Films Rating </span>
                                 <span class="arrow"></span>
-                            </a>
-                            <ul class="sub-menu">
-                                 <li class="nav-item  ">
-                                    <a href="{{url('rater')}}" class="nav-link ">
-                                        <span class="title">Films</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="{{url('rate_poster')}}" class="nav-link ">
-                                        <span class="title">Poster</span>
-                                    </a>
-                                </li>
-                            </ul>
+                    </a>
+
+                </li>
+                <li class="nav-item  ">
+                    <a href="{{url('rate_poster')}}" class="nav-link nav-toggle">
+                                <i class="icon-picture"></i>
+                                <span class="title">Posters Rating</span>
+                                <span class="arrow"></span>
+                    </a>
+                </li>
+                <li class="nav-item  ">
+                    <a href="{{url('rate_poster')}}" class="nav-link nav-toggle">
+                        <i class="icon-picture"></i>
+                        <span class="title">Posters Rating</span>
+                        <span class="arrow"></span>
+                    </a>
                 </li>
             </ul>
             <!-- END SIDEBAR MENU -->

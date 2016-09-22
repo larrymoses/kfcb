@@ -1,15 +1,4 @@
 <!DOCTYPE html>
-<!-- 
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.5
-Version: 4.5.2
-Author: KeenThemes
-Website: http://www.keenthemes.com/
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Like: www.facebook.com/keenthemes
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
 <!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
 <!--[if !IE]><!-->
@@ -19,11 +8,11 @@ License: You must have a valid license purchased only from themeforest(the above
 
     <head>
         <meta charset="utf-8" />
-        <title>Metronic | Form Wizard</title>
+        <title>KFCB |  @yield('title')</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <meta content="" name="description" />
-        <meta content="" name="author" />
+        <meta content="Larry Moses" name="author" />
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
         <link href="../assets/global/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
@@ -89,11 +78,13 @@ License: You must have a valid license purchased only from themeforest(the above
                                 <a href="{{url('profile')}}">
                                     <i class="icon-user"></i> My Profile </a>
                             </li>
+
                             <li class="divider"> </li>
                             <li>
-                                <a href="{{url('lock')}}">
-                                    <i class="icon-lock"></i> Lock Screen </a>
+                                <a href="{{url('password')}}">
+                                    <i class="icon-lock"></i> Change Password </a>
                             </li>
+                            <li class="divider"> </li>
                             <li>
                                 <a href="{{url('logout')}}">
                                     <i class="icon-key"></i> Log Out </a>
@@ -126,35 +117,33 @@ License: You must have a valid license purchased only from themeforest(the above
                 <!-- DOC: Change data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                 <div class="page-sidebar navbar-collapse collapse">
                     <!-- BEGIN SIDEBAR MENU -->
-                    <!-- DOC: Apply "page-sidebar-menu-light" class right after "page-sidebar-menu" to enable light sidebar menu style(without borders) -->
-                    <!-- DOC: Apply "page-sidebar-menu-hover-submenu" class right after "page-sidebar-menu" to enable hoverable(hover vs accordion) sub menu mode -->
-                    <!-- DOC: Apply "page-sidebar-menu-closed" class right after "page-sidebar-menu" to collapse("page-sidebar-closed" class must be applied to the body element) the sidebar sub menu mode -->
-                    <!-- DOC: Set data-auto-scroll="false" to disable the sidebar from auto scrolling/focusing -->
-                    <!-- DOC: Set data-keep-expand="true" to keep the submenues expanded -->
                     <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
                     <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
 
                         <li class="nav-item  ">
-                            <a href="javascript:;" class="nav-link nav-toggle">
+                            <a href="{{url('rater')}}" class="nav-link nav-toggle">
                                 <i class="icon-film"></i>
-                                <span class="title">Film Management</span>
+                                <span class="title">Films Rating </span>
                                 <span class="arrow"></span>
                             </a>
-                            <ul class="sub-menu">
-                                <li class="nav-item  ">
-                                    <a href="{{url('rater')}}" class="nav-link ">
-                                        <span class="title">Films</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item  ">
-                                    <a href="{{url('rate_poster')}}" class="nav-link ">
-                                        <span class="title">Poster</span>
-                                    </a>
-                                </li>
-                            </ul>
+
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="{{url('rate_poster')}}" class="nav-link nav-toggle">
+                                <i class="icon-picture"></i>
+                                <span class="title">Posters Rating</span>
+                                <span class="arrow"></span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="{{url('rate_poster')}}" class="nav-link nav-toggle">
+                                <i class="icon-picture"></i>
+                                <span class="title">Posters Rating</span>
+                                <span class="arrow"></span>
+                            </a>
                         </li>
                     </ul>
-                    <!-- END SIDEBAR MENU -->
+                    <!-- END SIDEBAR MENU -->->
                 </div>
                 <!-- END SIDEBAR -->
             </div>

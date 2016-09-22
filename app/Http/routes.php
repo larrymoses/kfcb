@@ -17,6 +17,9 @@ Route::group(['middleware' => 'auth'], function () {
 Route::get('/send', 'EmailController@send');
 Route::group(['middleware' => ['super']], function () {
 	//settings 
+	Route::match(['get', 'post'], 'client/password', 'SettingsController@clientPassword');
+	Route::get('rater/profile', 'SettingsController@raterProfile');
+	Route::post('profile/post', 'SettingsController@raterProfilePost');
 	Route::get('settings/themes', 'SettingsController@themes');
 	Route::get('settings/themes/{id}', 'SettingsController@themesbyID');
 	Route::post('settings/themes', 'SettingsController@savethemes');

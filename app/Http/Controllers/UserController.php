@@ -35,6 +35,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'phone' => 'required|unique:users',
+            'GroupID' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'email' => 'required|email|max:255|unique:users',
+        ]);
         $validator = Validator::make(Input::All(), [
             'phone' => 'required|unique:users',
             'GroupID' => 'required',

@@ -12,6 +12,7 @@ use Datatables;
 use Auth;
 use App\AuditLog;
 use App\Users;
+use App\FilmExaminer;
 class FilmController extends Controller
 {
     public function __construct()
@@ -130,11 +131,21 @@ class FilmController extends Controller
         $logs->userID =Auth::User()->id;
         $logs->save();
 
+        $this_film=DB::table('films')->where('name', '=', $request->input('name'))->first();
+        $name=$this_film->name;
+        $filmID=$this_film->id;
+
+
+        $users = DB::table('users')->where('GroupID',3)->get();;
+
+        foreach ($users as $user) {
+            DB::insert('insert into film_examiners (userID, filmID) values (?, ?)', [$user->id, $filmID]);
+        }
 
         return response()->json([
             'success'=>false,
             'status'=>'00',
-            'message' =>'<code>'. Input::get('name').'</code>'.' Created Successfully'
+            'message' =>'<code>'. $name.'</code>'.' Created Successfully'
         ]);
 
 
@@ -248,10 +259,12 @@ class FilmController extends Controller
             }
             else{
                 $film->name = $request->input('name');
-                $film->genre = $request->input('genre');
                 $film->category = $request->input('category');
                 $film->length = $request->input('length');
                 $film->origin = $request->input('origin');
+                $film->genre = $request->input('genre');
+                $film->producer = $request->input('producer');
+                $film->poster = $request->input('poster');
                 $film->year_of_production = $request->input('year_of_production');
                 $film->description = $request->input('description');
                 $film->updatedby = Auth::User()->id;

@@ -10,6 +10,7 @@ use App\Theme;
 use APP\Parameter;
 use Datatables;
 use Auth;
+use Validator;
 use App\AuditLog;
 use Illuminate\Support\Facades\Input;
 class SettingsController extends Controller
@@ -22,6 +23,24 @@ class SettingsController extends Controller
     public function themes()
     {
         return view('settings.themes');
+    }
+    public function raterProfile()
+    {
+        return view('settings.rater');
+    } 
+    public function raterProfilePost(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'password' => 'required|max:255',
+            'newpassword' => 'required|max:255',
+            'confirm_newpassword' => 'required|max:255',
+        ]);
+        if ($validator->fails()) {
+            return redirect('profile/post')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
     }
     public function themesbyID($id)
     {

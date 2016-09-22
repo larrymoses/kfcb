@@ -14,7 +14,10 @@
                                                 <span class="step-title"> Step 1 of 4 </span>
                                             </span>
                             </div>
-
+                            <div class="caption pull-right">
+                                <i class=" icon-film font-red"></i>
+                                <span class="caption-subject font-red bold uppercase"> {{$film->name }}</span>
+                            </div>
                         </div>
                         <div class="portlet-body form">
                             <form action="#" class="form-horizontal" id="submit_form" method="POST">
@@ -39,7 +42,7 @@
                                                 <a href="#tab3" data-toggle="tab" class="step active">
                                                     <span class="number"> 3 </span>
                                                                 <span class="desc">
-                                                                    <i class="fa fa-check"></i> Review  </span>
+                                                                    <i class="fa fa-check"></i> Review Ratings Captured</span>
                                                 </a>
                                             </li>
                                             <li>
@@ -372,27 +375,25 @@
                                                             <div class="portlet-title">
                                                                 <div class="caption">
                                                                     <i class="fa fa-check"></i>Rating </div>
-
                                                             </div>
                                                             <div class="portlet-body">
 
-                                                                <table class="table table-condensed table-hover">
+                                                                <table class="table table-condensed table-responsive table-hover" >
                                                                     <thead>
                                                                     <tr>
                                                                         <th>#</th>
                                                                         <th>Theme Name</th>
-                                                                        <th>Total Occurances</th>
+                                                                        <th>Total Occurrence</th>
                                                                         <th>Score</th>
                                                                     </tr>
                                                                     </thead>
-
                                                                     <tbody>
                                                                     <tr>
                                                                         <td>1</td>
                                                                         <td>Violence and Crime</td>
                                                                         <td><strong><a id="occurance1">0</a></strong></td>
-                                                                        <td> <div class="form-group">
-                                                                                <select class="form-control input-xsmall themeSelect">
+                                                                        <td>
+                                                                                <select class="bs-select form-control input-xsmall themeSelect" data-style="green">
                                                                                     <option value="0" selected>0
                                                                                     </option>
                                                                                     <option value="1">1</option>
@@ -401,15 +402,14 @@
                                                                                     <option value="4">4</option>
                                                                                     <option value="5">5</option>
                                                                                 </select>
-                                                                            </div>
-                                                                        </td>
+                                                                            </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>2</td>
                                                                         <td>Sex, Obscenity and Nudity</td>
                                                                         <td><strong><a id="occurance2">0</a></strong></td>
-                                                                        <td> <div class="form-group">
-                                                                                <select class="form-control input-xsmall themeSelect">
+                                                                        <td>
+                                                                            <select class="bs-select form-control input-xsmall  themeSelect" data-style="green">
                                                                                     <option value="0" selected>0
                                                                                     </option>
                                                                                     <option value="1">1</option>
@@ -418,7 +418,7 @@
                                                                                     <option value="4">4</option>
                                                                                     <option value="5">5</option>
                                                                                 </select>
-                                                                            </div>
+
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -426,8 +426,8 @@
 
                                                                         <td>Horror and Occult</td>
                                                                         <td><strong><a id="occurance3">0</a></strong></td>
-                                                                        <td> <div class="form-group">
-                                                                                <select class="form-control input-xsmall themeSelect">
+                                                                        <td>
+                                                                            <select class="bs-select form-control input-xsmall themeSelect" data-style="green">
                                                                                     <option value="0" selected>0
                                                                                     </option>
                                                                                     <option value="1">1</option>
@@ -436,15 +436,15 @@
                                                                                     <option value="4">4</option>
                                                                                     <option value="5">5</option>
                                                                                 </select>
-                                                                            </div>
+
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>4</td>
                                                                         <td>Drugs, Smoking, Tobacco, Solvents and Alcohol</td>
                                                                         <td><strong><a id="occurance4">0</a></strong></td>
-                                                                        <td> <div class="form-group">
-                                                                                <select class="form-control input-xsmall themeSelect">
+                                                                        <td>
+                                                                            <select class="bs-select form-control input-xsmall themeSelect" data-style="green">
                                                                                     <option value="0" selected>0
                                                                                     </option>
                                                                                     <option value="1">1</option>
@@ -453,7 +453,7 @@
                                                                                     <option value="4">4</option>
                                                                                     <option value="5">5</option>
                                                                                 </select>
-                                                                            </div>
+
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -461,8 +461,8 @@
 
                                                                         <td>Profanity,Religion and Community</td>
                                                                         <td><strong><a id="occurance5">0</a></strong></td>
-                                                                        <td> <div class="form-group">
-                                                                                <select class="form-control input-xsmall themeSelect">
+                                                                        <td>
+                                                                            <select class="bs-select form-control input-xsmall themeSelect" data-style="green">
                                                                                     <option value="0" selected>0
                                                                                     </option>
                                                                                     <option value="1">1</option>
@@ -471,7 +471,7 @@
                                                                                     <option value="4">4</option>
                                                                                     <option value="5">5</option>
                                                                                 </select>
-                                                                            </div>
+
                                                                         </td>
                                                                     </tr>
                                                                     <tr>
@@ -479,8 +479,8 @@
 
                                                                         <td>Propaganda for War, hate Speech and Incitement Parameters</td>
                                                                         <td><strong><a id="occurance6">0</a></strong></td>
-                                                                        <td> <div class="form-group">
-                                                                                <select class="form-control input-xsmall themeSelect">
+                                                                        <td>
+                                                                                <select class="bs-select form-control input-xsmall themeSelect" data-style="green">
                                                                                     <option value="0" selected>0
                                                                                     </option>
                                                                                     <option value="1">1</option>
@@ -489,7 +489,7 @@
                                                                                     <option value="4">4</option>
                                                                                     <option value="5">5</option>
                                                                                 </select>
-                                                                            </div>
+
                                                                         </td>
                                                                     </tr>
                                                                     </tbody>
@@ -497,7 +497,7 @@
                                                                     <tr>
                                                                         <th>#</th>
                                                                         <th>Theme Name</th>
-                                                                        <th>Total Occurances</th>
+                                                                        <th>Total Occurrence</th>
                                                                         <th>Score</th>
                                                                     </tr>
                                                                     </tfoot>
@@ -512,7 +512,7 @@
                                                         <div class="portlet box blue">
                                                             <div class="portlet-title">
                                                                 <div class="caption">
-                                                                    <i class="fa fa-list-alt"></i>Theme Occurance </div>
+                                                                    <i class="fa fa-list-alt"></i>Theme Occurrence </div>
                                                             </div>
                                                             <div class="portlet-body">
                                                                 <table id="viewThemeTimeOccurance" class="display table table-striped table-bordered responsive dataTable dtr-inline" cellspacing="0" width="100%">

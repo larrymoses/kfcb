@@ -14,6 +14,7 @@ use App\AuditLog;
 use App\TempRate;
 use Auth;
 use App\ThemeOccurance;
+use App\RatedMe;
 class RatersController extends Controller
 {
      public function __construct(){
@@ -57,7 +58,7 @@ class RatersController extends Controller
        if ($validator->fails()) {
             $logs=new AuditLog();
             $logs->username =Auth::User()->username;
-            $logs->activity ="Create User: Validation error ";
+            $logs->activity ="Film rating: Validation error ";
             $logs->status ="0";
             $logs->userID =Auth::User()->id;
             $logs->save();
@@ -89,6 +90,11 @@ class RatersController extends Controller
             DB::table('films')
                 ->where('id', $filmID)
                 ->update(['ratedby' => Auth::User()->id,'rated'=>1]);
+           DB::table('film_examiners')->where('filmID',$filmID)->where('userID',Auth::User()->id)->update(['status'=>1]);
+           $byme = new RatedMe();
+           $byme->filmID=$filmID;
+           $byme->userID= Auth::User()->id;
+           $byme->save();
 
             $logs=new AuditLog();
             $logs->username =Auth::User()->username;
@@ -273,8 +279,13 @@ class RatersController extends Controller
 
     public function getFilmsList()
     {
-        // $films = DB::table('films')->where('rated',1);
-        $films = DB::table('films')->where('ratedby','!=' , Auth::User()->id)->orWhereNull('ratedby');
+        $id=Auth::User()->id;
+
+        $films = DB::table('films')
+        ->join('film_examiners', 'films.id', '=', 'film_examiners.filmID')
+        ->where('film_examiners.userID',$id)
+        ->where('film_examiners.status',0)
+        ->select('films.*');
         $action='<a href="'.url("/rate/".'{{ $id }}').'"  class="btn btn-primary btn-xs">Start Rate</a>';
         return Datatables::of($films)
             ->editColumn('id',"{{ \$id }}")
