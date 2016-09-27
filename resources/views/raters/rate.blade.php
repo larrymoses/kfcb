@@ -125,12 +125,15 @@
                                                             <div class="portlet-body">
                                                                 @if($film->clip===1)
                                                                     <div align="center" class="embed-responsive embed-responsive-16by9">
-                                                                    <video width="320" height="240" controls="controls" autoplay="autoplay">
-                                                                        <source src="{{asset('/').$film->clip_path}}" type="video/mp4">
-                                                                        <object data="" width="320" height="240">
-                                                                            <embed width="320" height="240" src="{{asset('').$film->clip_path}}">
-                                                                        </object>
-                                                                    </video>
+                                                                        <video width="320" height="240"
+                                                                               controls="controls" autoplay="autoplay">
+                                                                            <source src="{{asset('/').$film->clip_path}}"
+                                                                                    type="video/mp4">
+                                                                            <object data="" width="320" height="240">
+                                                                                <embed width="320" height="240"
+                                                                                       src="{{asset('').$film->clip_path}}">
+                                                                            </object>
+                                                                        </video>
                                                                     </div>
                                                                     <h1 align="center"><time id="timer">00:00:00</time></h1>
                                                                     <div class="clearfix">
@@ -167,202 +170,224 @@
                                                 <div class="row">
                                                     <div id="thm1">
                                                         <div class="col-md-6 ">
-                                                        <!-- BEGIN Portlet PORTLET-->
-                                                        <div class="portlet box blue">
-                                                            <div class="portlet-title">
-                                                                <div class="caption">
-                                                                    <i class="fa fa-check"></i>Violence and Crime </div>
+                                                            <!-- BEGIN Portlet PORTLET-->
+                                                            <div class="portlet box blue">
+                                                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="fa fa-check"></i>Violence and Crime
+                                                                    </div>
 
+                                                                </div>
+                                                                <div class="portlet-body">
+                                                                    <table id="violenceTable"
+                                                                           class="display table table-condensed table-striped table-bordered responsive dataTable no-footer dtr-inline"
+                                                                           cellspacing="0" width="100%">
+                                                                        <thead>
+                                                                        <tr>
+
+                                                                            <th>Parameter Name</th>
+                                                                            <th>Check</th>
+                                                                        </tr>
+                                                                        </thead>
+
+                                                                        <tfoot>
+                                                                        <tr>
+
+                                                                            <th>Parameter Name</th>
+                                                                            <th>Check</th>
+                                                                        </tr>
+                                                                        </tfoot>
+                                                                    </table>
+
+                                                                </div>
                                                             </div>
-                                                            <div class="portlet-body">
-                                                                <table id="violenceTable" class="display table table-condensed table-striped table-bordered responsive dataTable no-footer dtr-inline" cellspacing="0" width="100%">
-                                                                    <thead>
-                                                                    <tr>
-
-                                                                        <th>Parameter Name</th>
-                                                                        <th>Check</th>
-                                                                    </tr>
-                                                                    </thead>
-
-                                                                    <tfoot>
-                                                                    <tr>
-
-                                                                        <th>Parameter Name</th>
-                                                                        <th>Check</th>
-                                                                    </tr>
-                                                                    </tfoot>
-                                                                </table>
-
-                                                            </div>
+                                                            <!-- END Portlet PORTLET-->
                                                         </div>
-                                                        <!-- END Portlet PORTLET-->
-                                                    </div>
                                                     </div>
                                                     <div id="thm2">
                                                         <div class="col-md-6 ">
-                                                        <!-- BEGIN Portlet PORTLET-->
-                                                        <div class="portlet box blue">
-                                                            <div class="portlet-title">
-                                                                <div class="caption">
-                                                                    <i class="fa fa-play"></i>Sex, Obscenity and Nudity </div>
+                                                            <!-- BEGIN Portlet PORTLET-->
+                                                            <div class="portlet box blue">
+                                                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="fa fa-play"></i>Sex, Obscenity and
+                                                                        Nudity
+                                                                    </div>
 
+                                                                </div>
+                                                                <div class="portlet-body">
+                                                                    <table id="sexTable"
+                                                                           class="display table table-striped table-bordered responsive dataTable no-footer dtr-inline"
+                                                                           cellspacing="0" width="100%">
+                                                                        <thead>
+                                                                        <tr>
+
+                                                                            <th>Parameter Name</th>
+                                                                            <th>Check</th>
+                                                                        </tr>
+                                                                        </thead>
+
+                                                                        <tfoot>
+                                                                        <tr>
+
+                                                                            <th>Parameter Name</th>
+                                                                            <th>Check</th>
+                                                                        </tr>
+                                                                        </tfoot>
+                                                                    </table>
+
+                                                                </div>
                                                             </div>
-                                                            <div class="portlet-body">
-                                                                <table id="sexTable" class="display table table-striped table-bordered responsive dataTable no-footer dtr-inline" cellspacing="0" width="100%">
-                                                                    <thead>
-                                                                    <tr>
-
-                                                                        <th>Parameter Name</th>
-                                                                        <th>Check</th>
-                                                                    </tr>
-                                                                    </thead>
-
-                                                                    <tfoot>
-                                                                    <tr>
-
-                                                                        <th>Parameter Name</th>
-                                                                        <th>Check</th>
-                                                                    </tr>
-                                                                    </tfoot>
-                                                                </table>
-
-                                                            </div>
+                                                            <!-- END Portlet PORTLET-->
                                                         </div>
-                                                        <!-- END Portlet PORTLET-->
-                                                    </div>
                                                     </div>
                                                     <div id="thm3">
                                                         <div class="col-md-6 ">
-                                                        <!-- BEGIN Portlet PORTLET-->
-                                                        <div class="portlet box blue">
-                                                            <div class="portlet-title">
-                                                                <div class="caption">
-                                                                    <i class="icon-ghost"></i>Horror and Occult</div>
+                                                            <!-- BEGIN Portlet PORTLET-->
+                                                            <div class="portlet box blue">
+                                                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="icon-ghost"></i>Horror and Occult
+                                                                    </div>
 
+                                                                </div>
+                                                                <div class="portlet-body">
+                                                                    <table id="occultTable"
+                                                                           class="display table table-striped table-bordered responsive dataTable no-footer dtr-inline"
+                                                                           cellspacing="0" width="100%">
+                                                                        <thead>
+                                                                        <tr>
+
+                                                                            <th>Parameter Name</th>
+                                                                            <th>Check</th>
+                                                                        </tr>
+                                                                        </thead>
+
+                                                                        <tfoot>
+                                                                        <tr>
+
+                                                                            <th>Parameter Name</th>
+                                                                            <th>Check</th>
+                                                                        </tr>
+                                                                        </tfoot>
+                                                                    </table>
+
+
+                                                                </div>
                                                             </div>
-                                                            <div class="portlet-body">
-                                                                <table id="occultTable" class="display table table-striped table-bordered responsive dataTable no-footer dtr-inline" cellspacing="0" width="100%">
-                                                                    <thead>
-                                                                    <tr>
-
-                                                                        <th>Parameter Name</th>
-                                                                        <th>Check</th>
-                                                                    </tr>
-                                                                    </thead>
-
-                                                                    <tfoot>
-                                                                    <tr>
-
-                                                                        <th>Parameter Name</th>
-                                                                        <th>Check</th>
-                                                                    </tr>
-                                                                    </tfoot>
-                                                                </table>
-
-
-                                                            </div>
+                                                            <!-- END Portlet PORTLET-->
                                                         </div>
-                                                        <!-- END Portlet PORTLET-->
-                                                    </div>
                                                     </div>
                                                     <div id="thm4">
                                                         <div class="col-md-6 ">
-                                                        <!-- BEGIN Portlet PORTLET-->
-                                                        <div class="portlet box blue">
-                                                            <div class="portlet-title">
-                                                                <div class="caption">
-                                                                    <i class="fa fa-play"></i>Drugs, Smoking, Tobacco, Solvents and Alcohol </div>
+                                                            <!-- BEGIN Portlet PORTLET-->
+                                                            <div class="portlet box blue">
+                                                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="fa fa-play"></i>Drugs, Smoking,
+                                                                        Tobacco, Solvents and Alcohol
+                                                                    </div>
 
+                                                                </div>
+                                                                <div class="portlet-body">
+                                                                    <table id="drugsTable"
+                                                                           class="display table table-striped table-bordered responsive dataTable no-footer dtr-inline"
+                                                                           cellspacing="0" width="100%">
+                                                                        <thead>
+                                                                        <tr>
+
+                                                                            <th>Parameter Name</th>
+                                                                            <th>Check</th>
+                                                                        </tr>
+                                                                        </thead>
+
+                                                                        <tfoot>
+                                                                        <tr>
+
+                                                                            <th>Parameter Name</th>
+                                                                            <th>Check</th>
+                                                                        </tr>
+                                                                        </tfoot>
+                                                                    </table>
+
+                                                                </div>
                                                             </div>
-                                                            <div class="portlet-body">
-                                                                <table id="drugsTable" class="display table table-striped table-bordered responsive dataTable no-footer dtr-inline" cellspacing="0" width="100%">
-                                                                    <thead>
-                                                                    <tr>
-
-                                                                        <th>Parameter Name</th>
-                                                                        <th>Check</th>
-                                                                    </tr>
-                                                                    </thead>
-
-                                                                    <tfoot>
-                                                                    <tr>
-
-                                                                        <th>Parameter Name</th>
-                                                                        <th>Check</th>
-                                                                    </tr>
-                                                                    </tfoot>
-                                                                </table>
-
-                                                            </div>
+                                                            <!-- END Portlet PORTLET-->
                                                         </div>
-                                                        <!-- END Portlet PORTLET-->
-                                                    </div>
                                                     </div>
                                                     <div id="thm5">
                                                         <div class="col-md-6 ">
-                                                        <!-- BEGIN Portlet PORTLET-->
-                                                        <div class="portlet box blue">
-                                                            <div class="portlet-title">
-                                                                <div class="caption">
-                                                                    <i class="fa fa-check"></i>Profanity,Religion and Community </div>
+                                                            <!-- BEGIN Portlet PORTLET-->
+                                                            <div class="portlet box blue">
+                                                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="fa fa-check"></i>Profanity,Religion
+                                                                        and Community
+                                                                    </div>
 
+                                                                </div>
+                                                                <div class="portlet-body">
+                                                                    <table id="religionTable"
+                                                                           class="display table table-striped table-bordered responsive dataTable no-footer dtr-inline"
+                                                                           cellspacing="0" width="100%">
+                                                                        <thead>
+                                                                        <tr>
+
+                                                                            <th>Parameter Name</th>
+                                                                            <th>Check</th>
+                                                                        </tr>
+                                                                        </thead>
+
+                                                                        <tfoot>
+                                                                        <tr>
+
+                                                                            <th>Parameter Name</th>
+                                                                            <th>Check</th>
+                                                                        </tr>
+                                                                        </tfoot>
+                                                                    </table>
+
+                                                                </div>
                                                             </div>
-                                                            <div class="portlet-body">
-                                                                <table id="religionTable" class="display table table-striped table-bordered responsive dataTable no-footer dtr-inline" cellspacing="0" width="100%">
-                                                                    <thead>
-                                                                    <tr>
-
-                                                                        <th>Parameter Name</th>
-                                                                        <th>Check</th>
-                                                                    </tr>
-                                                                    </thead>
-
-                                                                    <tfoot>
-                                                                    <tr>
-
-                                                                        <th>Parameter Name</th>
-                                                                        <th>Check</th>
-                                                                    </tr>
-                                                                    </tfoot>
-                                                                </table>
-
-                                                            </div>
+                                                            <!-- END Portlet PORTLET-->
                                                         </div>
-                                                        <!-- END Portlet PORTLET-->
-                                                    </div>
                                                     </div>
                                                     <div id="thm6">
                                                         <div class="col-md-6 ">
-                                                        <!-- BEGIN Portlet PORTLET-->
-                                                        <div class="portlet box blue">
-                                                            <div class="portlet-title">
-                                                                <div class="caption">
-                                                                    <i class="fa fa-play"></i>Propaganda for War, Hate Speech and Incitement </div>
+                                                            <!-- BEGIN Portlet PORTLET-->
+                                                            <div class="portlet box blue">
+                                                                <div class="portlet-title">
+                                                                    <div class="caption">
+                                                                        <i class="fa fa-play"></i>Propaganda for War,
+                                                                        Hate Speech and Incitement
+                                                                    </div>
 
+                                                                </div>
+                                                                <div class="portlet-body">
+                                                                    <table id="propagandaTable"
+                                                                           class="display table table-striped table-bordered responsive dataTable no-footer dtr-inline"
+                                                                           cellspacing="0" width="100%">
+                                                                        <thead>
+                                                                        <tr>
+
+                                                                            <th>Parameter Name</th>
+                                                                            <th>Check</th>
+                                                                        </tr>
+                                                                        </thead>
+
+                                                                        <tfoot>
+                                                                        <tr>
+
+                                                                            <th>Parameter Name</th>
+                                                                            <th>Check</th>
+                                                                        </tr>
+                                                                        </tfoot>
+                                                                    </table>
+
+                                                                </div>
                                                             </div>
-                                                            <div class="portlet-body">
-                                                                <table id="propagandaTable" class="display table table-striped table-bordered responsive dataTable no-footer dtr-inline" cellspacing="0" width="100%">
-                                                                    <thead>
-                                                                    <tr>
-
-                                                                        <th>Parameter Name</th>
-                                                                        <th>Check</th>
-                                                                    </tr>
-                                                                    </thead>
-
-                                                                    <tfoot>
-                                                                    <tr>
-
-                                                                        <th>Parameter Name</th>
-                                                                        <th>Check</th>
-                                                                    </tr>
-                                                                    </tfoot>
-                                                                </table>
-
-                                                            </div>
+                                                            <!-- END Portlet PORTLET-->
                                                         </div>
-                                                        <!-- END Portlet PORTLET-->
-                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -393,16 +418,17 @@
                                                                         <td>Violence and Crime</td>
                                                                         <td><strong><a id="occurance1">0</a></strong></td>
                                                                         <td>
-                                                                                <select class="bs-select form-control input-xsmall themeSelect" data-style="green">
-                                                                                    <option value="0" selected>0
-                                                                                    </option>
-                                                                                    <option value="1">1</option>
-                                                                                    <option value="2">2</option>
-                                                                                    <option value="3">3</option>
-                                                                                    <option value="4">4</option>
-                                                                                    <option value="5">5</option>
-                                                                                </select>
-                                                                            </td>
+                                                                            <select class="bs-select form-control input-xsmall themeSelect"
+                                                                                    data-style="green">
+                                                                                <option value="0" selected>0
+                                                                                </option>
+                                                                                <option value="1">1</option>
+                                                                                <option value="2">2</option>
+                                                                                <option value="3">3</option>
+                                                                                <option value="4">4</option>
+                                                                                <option value="5">5</option>
+                                                                            </select>
+                                                                        </td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>2</td>
@@ -410,14 +436,14 @@
                                                                         <td><strong><a id="occurance2">0</a></strong></td>
                                                                         <td>
                                                                             <select class="bs-select form-control input-xsmall  themeSelect" data-style="green">
-                                                                                    <option value="0" selected>0
-                                                                                    </option>
-                                                                                    <option value="1">1</option>
-                                                                                    <option value="2">2</option>
-                                                                                    <option value="3">3</option>
-                                                                                    <option value="4">4</option>
-                                                                                    <option value="5">5</option>
-                                                                                </select>
+                                                                                <option value="0" selected>0
+                                                                                </option>
+                                                                                <option value="1">1</option>
+                                                                                <option value="2">2</option>
+                                                                                <option value="3">3</option>
+                                                                                <option value="4">4</option>
+                                                                                <option value="5">5</option>
+                                                                            </select>
 
                                                                         </td>
                                                                     </tr>
@@ -428,14 +454,14 @@
                                                                         <td><strong><a id="occurance3">0</a></strong></td>
                                                                         <td>
                                                                             <select class="bs-select form-control input-xsmall themeSelect" data-style="green">
-                                                                                    <option value="0" selected>0
-                                                                                    </option>
-                                                                                    <option value="1">1</option>
-                                                                                    <option value="2">2</option>
-                                                                                    <option value="3">3</option>
-                                                                                    <option value="4">4</option>
-                                                                                    <option value="5">5</option>
-                                                                                </select>
+                                                                                <option value="0" selected>0
+                                                                                </option>
+                                                                                <option value="1">1</option>
+                                                                                <option value="2">2</option>
+                                                                                <option value="3">3</option>
+                                                                                <option value="4">4</option>
+                                                                                <option value="5">5</option>
+                                                                            </select>
 
                                                                         </td>
                                                                     </tr>
@@ -445,14 +471,14 @@
                                                                         <td><strong><a id="occurance4">0</a></strong></td>
                                                                         <td>
                                                                             <select class="bs-select form-control input-xsmall themeSelect" data-style="green">
-                                                                                    <option value="0" selected>0
-                                                                                    </option>
-                                                                                    <option value="1">1</option>
-                                                                                    <option value="2">2</option>
-                                                                                    <option value="3">3</option>
-                                                                                    <option value="4">4</option>
-                                                                                    <option value="5">5</option>
-                                                                                </select>
+                                                                                <option value="0" selected>0
+                                                                                </option>
+                                                                                <option value="1">1</option>
+                                                                                <option value="2">2</option>
+                                                                                <option value="3">3</option>
+                                                                                <option value="4">4</option>
+                                                                                <option value="5">5</option>
+                                                                            </select>
 
                                                                         </td>
                                                                     </tr>
@@ -463,14 +489,14 @@
                                                                         <td><strong><a id="occurance5">0</a></strong></td>
                                                                         <td>
                                                                             <select class="bs-select form-control input-xsmall themeSelect" data-style="green">
-                                                                                    <option value="0" selected>0
-                                                                                    </option>
-                                                                                    <option value="1">1</option>
-                                                                                    <option value="2">2</option>
-                                                                                    <option value="3">3</option>
-                                                                                    <option value="4">4</option>
-                                                                                    <option value="5">5</option>
-                                                                                </select>
+                                                                                <option value="0" selected>0
+                                                                                </option>
+                                                                                <option value="1">1</option>
+                                                                                <option value="2">2</option>
+                                                                                <option value="3">3</option>
+                                                                                <option value="4">4</option>
+                                                                                <option value="5">5</option>
+                                                                            </select>
 
                                                                         </td>
                                                                     </tr>
@@ -480,15 +506,16 @@
                                                                         <td>Propaganda for War, hate Speech and Incitement Parameters</td>
                                                                         <td><strong><a id="occurance6">0</a></strong></td>
                                                                         <td>
-                                                                                <select class="bs-select form-control input-xsmall themeSelect" data-style="green">
-                                                                                    <option value="0" selected>0
-                                                                                    </option>
-                                                                                    <option value="1">1</option>
-                                                                                    <option value="2">2</option>
-                                                                                    <option value="3">3</option>
-                                                                                    <option value="4">4</option>
-                                                                                    <option value="5">5</option>
-                                                                                </select>
+                                                                            <select class="bs-select form-control input-xsmall themeSelect"
+                                                                                    data-style="green">
+                                                                                <option value="0" selected>0
+                                                                                </option>
+                                                                                <option value="1">1</option>
+                                                                                <option value="2">2</option>
+                                                                                <option value="3">3</option>
+                                                                                <option value="4">4</option>
+                                                                                <option value="5">5</option>
+                                                                            </select>
 
                                                                         </td>
                                                                     </tr>
@@ -587,12 +614,16 @@
                                                                     </div>
                                                                 </div>
                                                                 @if($synopsis==$me)
-                                                                <div class="form-group">
-                                                                    <label class="col-sm-3 control-label">Enter Synopsis</label>
-                                                                    <div class="col-sm-9">
-                                                                        <textarea class="form-control" rows="3" id="enterSynopsis" name="enterSynopsis" required></textarea>
+                                                                    <div class="form-group">
+                                                                        <label class="col-sm-3 control-label">Enter
+                                                                            Synopsis</label>
+                                                                        <div class="col-sm-9">
+                                                                            <textarea class="form-control" rows="3"
+                                                                                      id="enterSynopsis"
+                                                                                      name="enterSynopsis"
+                                                                                      required></textarea>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
                                                                 @endif
                                                                 <div class="form-group">
                                                                     <label class="col-sm-3 control-label">Enter Justification</label>
@@ -652,8 +683,6 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
-
             var countClicks = 0;
             var theme1 = 0;
             var theme2  =0;
@@ -662,7 +691,6 @@
             var theme5  =0;
             var theme6  =0;
             var sysRating  =0;
-
             var index = 0;
             var h1 = document.getElementsByTagName('h1')[0],
                     start = document.getElementById('start'),
@@ -1091,12 +1119,9 @@
                     drawDataTable();
                 }
             });
-
-
             $('.themeSelect').change(function() {
                 var themeVal=$(this).val();
                 var currentValue=document.getElementById("sysRating").innerHTML;
-
                 if (themeVal > currentValue) {
                     document.getElementById('sysRating').innerHTML=themeVal;
                     if(themeVal=="1"){
@@ -1111,10 +1136,7 @@
                         document.getElementById('sysRatingWords').innerHTML="Restricted";
                     }
                 }
-
-
             });
-
         });
     </script>
 @endsection

@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\AuditLog;
 use App\Film;
 use App\Http\Requests;
-use Illuminate\Support\Facades\Input;
-use DB;
-use Validator;
-use Datatables;
-use Auth;
-use App\AuditLog;
 use App\Users;
-use App\FilmExaminer;
+use Auth;
+use Datatables;
+use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Validator;
+
 class FilmController extends Controller
 {
     public function __construct()
@@ -30,7 +30,8 @@ class FilmController extends Controller
     {
         $genre=DB::table('genres')->lists('name','name');
         $category=DB::table('category')->lists('name','name');
-        return view('films/index',compact('genre','category'));
+        $examiner = DB::table('users')->where('GroupID', 3)->lists('name', 'id');
+        return view('films/index', compact('genre', 'category', 'examiner'));
     }  
     public function filmSynopsis()
     {
@@ -118,10 +119,12 @@ class FilmController extends Controller
         $film->origin = $request->input('origin');
         $film->genre = $request->input('genre');
         $film->producer = $request->input('producer');
+        $film->synopsis_examiner = $request->input('producer');
         $film->poster = $request->input('poster');
         $film->year_of_production = $request->input('year_of_production');
         $film->description = $request->input('description');
         $film->createdby = Auth::User()->id;
+        $film->synopsis_examiner = $request->input('examiner');
         $film->save();
 
         $logs=new AuditLog();
@@ -134,7 +137,9 @@ class FilmController extends Controller
         $this_film=DB::table('films')->where('name', '=', $request->input('name'))->first();
         $name=$this_film->name;
         $filmID=$this_film->id;
+        $examiner = $request->input('examiner');
 
+        DB::insert('insert into synopsis_examiners (userID, filmID) values (?, ?)', [$examiner, $filmID]);
 
         $users = DB::table('users')->where('GroupID',3)->get();;
 

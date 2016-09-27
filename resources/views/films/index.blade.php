@@ -1,6 +1,4 @@
-
 @extends('layouts.moderator')
-
 @section('title', 'Film Management')
 @section('content')
     <div class="page-content-wrapper" xmlns:display="http://www.w3.org/1999/xhtml">
@@ -119,6 +117,13 @@
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="cast" class="col-lg-2 col-md-3 control-label"> Team Leader:</label>
+                                <div class="col-lg-10 col-md-9">
+                                    {!! Form::select('examiner',[''=>'Select Examiner to enter Synopsis']+ $examiner,['id'=>'e1'], ['class' => 'form-control required select2'],['required'],'' ) !!}
+                                    {{--<input id="cast" min="5" type="text" name="cast" class="form-control required" required>--}}
                                 </div>
                             </div>
                             <div class="form-group">
@@ -561,7 +566,7 @@
                                 editNotification.hide().find('#ul').empty();
                                 $.each(data.errors,function(index,error){
                                     editNotification.html('<div class="alert alert-danger">'+'<li>'+data.error+'</li>' +'</div>');
-                                })
+                                });
                                 createNotification.show();
                             }
                             break;

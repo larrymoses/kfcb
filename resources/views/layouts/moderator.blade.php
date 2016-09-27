@@ -166,6 +166,11 @@
                                 <span class="title">Rated Films</span>
                             </a>
                         </li>
+                        <li class="nav-item ">
+                            <a href="{{url('moderator/new')}}" class="nav-link nav-toggle">
+                                <span class="title">Assign Examiner to Film for Synopsis Capture</span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item  ">
@@ -192,12 +197,22 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item ">
-                    <a href="{{url('moderator/new')}}" class="nav-link nav-toggle">
-                        <i class="fa fa-user"></i>
-                        <span class="title">Assign Examiner to Film for Synopsis Capture</span>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-users"></i>
+                        <span class="title">User Management</span>
+                        <span class="arrow"></span>
                     </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="{{url('musers')}}" class="nav-link ">
+                                <span class="title">System Users</span>
+                            </a>
+                        </li>
+
+                    </ul>
                 </li>
+
                 <li class="nav-item  ">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="fa fa-cog"></i>

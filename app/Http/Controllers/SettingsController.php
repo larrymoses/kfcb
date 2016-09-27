@@ -2,17 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use DB;
-use App\Theme;
-use APP\Parameter;
-use Datatables;
-use Auth;
-use Validator;
 use App\AuditLog;
+use App\Http\Requests;
+use App\ThemeParam;
+use Auth;
+use Datatables;
+use DB;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Validator;
+
 class SettingsController extends Controller
 {
     public function __construct()
@@ -50,15 +49,13 @@ class SettingsController extends Controller
 
     public function parameters()
     {
-        $themes=DB::table('themes')->get();
+        $themes = DB::table('themes')->lists('name', 'name');
         return view('settings.parameters',compact('themes'));
     }
 
     public function getParameters()
     {
-        $parameters = DB::table('parameters')
-            ->join('themes','themes.id','=','parameters.themeID')
-        ->select('parameters.*','themes.name as themename');
+        $parameters = DB::table('parameters');
         $action='<div class="btn-group">
                             <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">Action <span class="caret"></span></button>
                             <ul class="dropdown-menu">
@@ -98,6 +95,38 @@ class SettingsController extends Controller
         $logs=new AuditLog();
         $logs->username =Auth::User()->username;
         $logs->activity ="Create Theme <code>:".$request->input('name')."</code>";
+        $logs->status = "1";
+        $logs->userID = Auth::User()->id;
+        $logs->save();
+
+
+        return response()->json([
+            'success' => false,
+            'status' => '00',
+            'message' => '<code>' . Input::get('name') . '</code>' . ' Created Successfully'
+        ]);
+
+
+    }
+
+    public function saveparameters(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|unique:parameters|max:255',
+        ]);
+        //get themeID
+        $themeID = DB::table('themes')->where('name', $request->input('theme'))->value('id');
+        $film = new ThemeParam();
+        $film->name = $request->input('name');
+        $film->themeID = $themeID;
+        $film->theme = $request->input('theme');
+        $film->description = $request->input('description');
+        $film->createdby = Auth::User()->id;
+        $film->save();
+
+        $logs = new AuditLog();
+        $logs->username = Auth::User()->username;
+        $logs->activity = "Create Parameter <code>:" . $request->input('name') . "</code>";
         $logs->status ="1";
         $logs->userID =Auth::User()->id;
         $logs->save();

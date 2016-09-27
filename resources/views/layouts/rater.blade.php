@@ -155,9 +155,9 @@
                     </a>
                 </li>
                 <li class="nav-item  ">
-                    <a href="{{url('rate_poster')}}" class="nav-link nav-toggle">
-                        <i class="icon-picture"></i>
-                        <span class="title">Posters Rating</span>
+                    <a href="{{url('history')}}" class="nav-link nav-toggle">
+                        <i class="fa fa-list-alt"></i>
+                        <span class="title">My Rating History</span>
                         <span class="arrow"></span>
                     </a>
                 </li>

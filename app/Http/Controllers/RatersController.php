@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\AuditLog;
+use App\Film;
+use App\Http\Requests;
+use App\RatedMe;
+use App\Rating;
+use App\TempRate;
+use App\ThemeOccurance;
+use Auth;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
-use App\Http\Requests;
-use DB;
 use Validator;
 use Yajra\Datatables\Datatables;
-use App\Film;
-use App\Rating;
-use App\AuditLog;
-use App\TempRate;
-use Auth;
-use App\ThemeOccurance;
-use App\RatedMe;
+
 class RatersController extends Controller
 {
      public function __construct(){
@@ -39,9 +40,9 @@ class RatersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function history()
     {
-        //
+        return view('raters.history');
     }
 
     /**
@@ -285,6 +286,22 @@ class RatersController extends Controller
         ->join('film_examiners', 'films.id', '=', 'film_examiners.filmID')
         ->where('film_examiners.userID',$id)
         ->where('film_examiners.status',0)
+            ->select('films.*');
+        $action = '<a href="' . url("/rate/" . '{{ $id }}') . '"  class="btn btn-primary btn-xs">Start Rate</a>';
+        return Datatables::of($films)
+            ->editColumn('id', "{{ \$id }}")
+            ->addColumn('actions', $action)
+            ->make(true);
+    }
+
+    public function getMyRatingHistory()
+    {
+        $id = Auth::User()->id;
+
+        $films = DB::table('films')
+            ->join('film_examiners', 'films.id', '=', 'film_examiners.filmID')
+            ->where('film_examiners.userID', $id)
+            ->where('film_examiners.status', 1)
         ->select('films.*');
         $action='<a href="'.url("/rate/".'{{ $id }}').'"  class="btn btn-primary btn-xs">Start Rate</a>';
         return Datatables::of($films)

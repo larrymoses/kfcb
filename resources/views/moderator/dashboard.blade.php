@@ -26,7 +26,25 @@
         <!-- BEGIN DASHBOARD STATS 1-->
         <div class="row">
             <a href="{{url('unrated')}}" tool-tip="Click Me">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                    <div class="dashboard-stat purple">
+                        <div class="visual">
+                            <i class="fa fa-film"></i>
+                        </div>
+                        <div class="details">
+                            <div class="number">
+                                <span data-counter="counterup" data-value="{{$data['all']}}">0</span>
+                            </div>
+                            <div class="desc">All Films</div>
+                        </div>
+                        <a class="more" href="{{url('films')}}"> View more
+                            <i class="m-icon-swapright m-icon-white"></i>
+                        </a>
+                    </div>
+                </div>
+            </a>
+            <a href="{{url('unrated')}}" tool-tip="Click Me">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="dashboard-stat blue">
                         <div class="visual">
                             <i class="fa fa-comments"></i>
@@ -44,7 +62,7 @@
                 </div>
             </a>
             <a href="{{url('rated')}}">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="dashboard-stat green">
                         <div class="visual">
                             <i class="fa fa-shopping-cart"></i>
@@ -62,7 +80,7 @@
                 </div>
             </a>
             <a href="{{url('declined')}}">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                     <div class="dashboard-stat red">
                         <div class="visual">
                             <i class="fa fa-globe"></i>
@@ -132,6 +150,7 @@
                                 legendMarkerColor: "grey",
                                 legendText: "FILMS Summary",
                                 dataPoints: [
+                                    {y: <?php echo $data['all'] ?>, label: "All Films"},
                                     {y: <?php echo $data['unrated'] ?>,  label: "Un Moderated" },
                                     {y: <?php echo $data['declined'] ?>,  label: "Rejected"},
                                     {y: <?php echo $data['rated'] ?>, label: "Moderated"},

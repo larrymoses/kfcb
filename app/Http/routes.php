@@ -31,6 +31,8 @@ Route::group(['middleware' => ['super']], function () {
 
 	Route::get('getfilm/{id}', 'FilmController@getEditData');
 	Route::get('getParameter/{id}', 'RatersController@getParameter');
+	Route::get('history', 'RatersController@history');
+	Route::get('get_my_rating_history', 'RatersController@getMyRatingHistory');
 	Route::post('rate/{id}', 'RatersController@store');
 	Route::post('storeTimeOccurance', 'RatersController@storeTimeOccurance');
 	Route::get('rate/{id}', 'RatersController@rate');
@@ -58,6 +60,7 @@ Route::group(['middleware' => ['super']], function () {
 	Route::get('certificate/poster/{id}', 'RatedController@posterCertificate');
 	Route::get('/declined/get_list/', 'DeclinedController@getFilmsList');
 	Route::get('/getusers/{id}', 'UserController@getusers');
+	Route::get('/mgetusers/{id}', 'MuserController@getusers');
     Route::get('/reviewrate/{id}', 'ModeratorController@reviewrate');
     Route::get('/getnonratedfilms', 'ModeratorController@getnonratedfilms');
     Route::get('/getnonratedfilmnosynopser', 'ModeratorController@getnonratedfilmnosynopser');
@@ -79,6 +82,7 @@ Route::group(['middleware' => ['super']], function () {
     Route::delete('/removerate/', 'RatersController@removerate');
 	Route::post('/activate', 'UserController@activate');
 	Route::resource('/users', 'UserController');
+	Route::resource('/musers', 'MuserController');
 	Route::get('/reports/detailed/{id}', 'ReportController@detailed');
 	Route::resource('/reports', 'ReportController');
 	Route::resource('/auditlogs', 'AuditLogsController');

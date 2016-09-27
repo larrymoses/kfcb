@@ -39,7 +39,6 @@
                                 <thead>
                                 <tr>
                                     <th>Parameter Name</th>
-                                    <th>Description</th>
                                     <th>Theme Name</th>
                                     <th>Actions</th>
                                 </tr>
@@ -79,13 +78,7 @@
                             <div class="form-group">
                                 <label for="length" class="col-lg-2 col-md-3 control-label"> Theme Name</label>
                                 <div class="col-lg-10 col-md-9">
-                                    <select id="themeID" name="themeID" class="form-control">
-                                        <?php
-                                        foreach ($themes as $value) {
-                                            print "<option value='" . $value->id . "'>" . $value->name . "</option>";
-                                        }
-                                        ?>
-                                    </select>
+                                    {!! Form::select('theme',[''=>'Select Theme']+ $themes,['id'=>'e1'], ['class' => 'form-control required select2'],['required'],'' ) !!}
                                 </div>
                             </div>
 
@@ -131,19 +124,13 @@
                                                class="form-control required" required>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label for="length" class="col-lg-2 col-md-3 control-label"> Theme Name</label>
                                     <div class="col-lg-10 col-md-9">
-                                        <select id="editThemeID" name="themeID" class="form-control">
-                                            <?php
-                                            foreach ($themes as $value) {
-                                                print "<option value='" . $value->id . "'>" . $value->name . "</option>";
-                                            }
-                                            ?>
-                                        </select>
+                                        {!! Form::select('theme',[''=>'Select Theme']+ $themes,['id'=>'editThemeID'], ['class' => 'form-control required select2'],['required'],'' ) !!}
                                     </div>
                                 </div>
+
                                 <div class="form-group">
                                     <label for="Description" class="col-lg-2 col-md-3 control-label">Description</label>
                                     <div class="col-lg-10 col-md-9">
@@ -345,8 +332,7 @@
                 "sAjaxSource": "<?php echo url('/get/parameters/') ?>",
                 "aoColumns": [
                     {mData: 'name'},
-                    {mData: 'description'},
-                    {mData: 'themename'},
+                    {mData: 'theme'},
                     {mData: 'actions'}
                 ]
             });
@@ -362,7 +348,7 @@
             var data = frm.serialize();
             $.ajax({
                 method: "POST",
-                url: "films",
+                url: "parameters",
                 data: data,
                 success: function (data, status) {
                     frm.hide();
