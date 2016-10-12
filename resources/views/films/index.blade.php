@@ -92,6 +92,14 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label for="length" class="col-lg-2 col-md-3 control-label"> Venue of Film
+                                    Rating</label>
+                                <div class="col-lg-10 col-md-9">
+                                    <input id="length" min="5" type="text" name="venue" class="form-control required"
+                                           required>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="year_of_production" class="col-lg-2 col-md-3 control-label"> Year of Production</label>
                                 <div class="col-lg-10 col-md-9">
                                     <input id="year_of_production" min="5" type="text" name="year_of_production" class="form-control required" required>
@@ -545,6 +553,7 @@
             var description = $("#editDescription").val();
             var producer = $("#editProducert").val();
             var genre = $("#editGenre").val();
+            var poster = $("#editPoster").val();
             var category = $("#editCategory").val();
             var year_of_production = $("#editYear").val();
             var length = $("#editLength").val();
@@ -553,7 +562,18 @@
             $.ajax({
                 method: "PUT",
                 url: "films/"+id,
-                data: {id: id,category:category, name: name, genre:genre,producer: producer, description: description, length:length,year_of_production:year_of_production,origin:origin},
+                data: {
+                    id: id,
+                    poster: poster,
+                    category: category,
+                    name: name,
+                    genre: genre,
+                    producer: producer,
+                    description: description,
+                    length: length,
+                    year_of_production: year_of_production,
+                    origin: origin
+                },
                 success: function (data, status) {
                     switch (status) {
                         case "success":

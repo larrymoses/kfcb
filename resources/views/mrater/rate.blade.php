@@ -1,4 +1,4 @@
-@extends('layouts.wizard')
+@extends('layouts.mwizard')
 @section('title', 'Unrated Films')
 @section('content')
 
@@ -54,7 +54,7 @@
                                             </li>
                                         </ul>
                                         <div id="bar" class="progress progress-striped" role="progressbar">
-                                            <div class="progress-bar progress-bar-success"> </div>
+                                            <div class="progress-bar progress-bar-success"></div>
                                         </div>
                                         <div class="tab-content">
                                             <div class="tab-pane active" id="tab1">
@@ -126,7 +126,9 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td>4</td>
-                                                                        <td>Drugs, Smoking, Tobacco, Solvents and Alcohol</td>
+                                                                        <td>Drugs, Smoking, Tobacco, Solvents and
+                                                                            Alcohol
+                                                                        </td>
                                                                         <td>
                                                                             <button class="btn btn-primary btn-sm"
                                                                                     id="btnTheme4">Add
@@ -156,7 +158,9 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td>6</td>
-                                                                        <td>Propaganda for War, hate Speech and Incitement Parameters</td>
+                                                                        <td>Propaganda for War, hate Speech and
+                                                                            Incitement Parameters
+                                                                        </td>
                                                                         <td>
                                                                             <button class="btn btn-primary btn-sm"
                                                                                     id="btnTheme6">Add
@@ -181,12 +185,14 @@
                                                         <div class="portlet box blue">
                                                             <div class="portlet-title">
                                                                 <div class="caption">
-                                                                    <i class="fa fa-play"></i>Video Widget </div>
+                                                                    <i class="fa fa-play"></i>Video Widget
+                                                                </div>
 
                                                             </div>
                                                             <div class="portlet-body">
                                                                 @if($film->clip===1)
-                                                                    <div align="center" class="embed-responsive embed-responsive-16by9">
+                                                                    <div align="center"
+                                                                         class="embed-responsive embed-responsive-16by9">
                                                                         <video width="320" height="240"
                                                                                controls="controls" autoplay="autoplay">
                                                                             <source src="{{asset('/').$film->clip_path}}"
@@ -197,7 +203,9 @@
                                                                             </object>
                                                                         </video>
                                                                     </div>
-                                                                    <h1 align="center"><time id="timer">00:00:00</time></h1>
+                                                                    <h1 align="center">
+                                                                        <time id="timer">00:00:00</time>
+                                                                    </h1>
                                                                     <div class="clearfix">
                                                                         <button class="btn btn-success btnStart btn-lg"
                                                                                 id="start"><span
@@ -221,7 +229,9 @@
 
                                                                         </div>
                                                                         <div class="portlet-body">
-                                                                            <h1 align="center"><time id="timer">00:00:00</time></h1>
+                                                                            <h1 align="center">
+                                                                                <time id="timer">00:00:00</time>
+                                                                            </h1>
                                                                             <div class="clearfix">
                                                                                 <button class="btn btn-success btnStart btn-lg"
                                                                                         id="start"><span
@@ -479,7 +489,8 @@
                                                         <div class="portlet box blue">
                                                             <div class="portlet-title">
                                                                 <div class="caption">
-                                                                    <i class="fa fa-check"></i>Rating </div>
+                                                                    <i class="fa fa-check"></i>Rating
+                                                                </div>
                                                             </div>
                                                             <div class="portlet-body">
                                                                 <table class="table table-striped table-bordered responsive dataTable table-condensed dtr-inline">
@@ -493,7 +504,8 @@
                                                                     <tbody>
                                                                     <tr class="thm1">
                                                                         <td>Violence and Crime</td>
-                                                                        <td><strong><a id="occurance1">0</a></strong></td>
+                                                                        <td><strong><a id="occurance1">0</a></strong>
+                                                                        </td>
                                                                         <td>
                                                                             <select class="bs-select  form-control input-xsmall themeSelect"
                                                                                     data-style="green">
@@ -509,9 +521,11 @@
                                                                     </tr>
                                                                     <tr class="thm2">
                                                                         <td>Sex, Obscenity and Nudity</td>
-                                                                        <td><strong><a id="occurance2">0</a></strong></td>
+                                                                        <td><strong><a id="occurance2">0</a></strong>
+                                                                        </td>
                                                                         <td>
-                                                                            <select class="bs-select form-control input-xsmall  themeSelect" data-style="green">
+                                                                            <select class="bs-select form-control input-xsmall  themeSelect"
+                                                                                    data-style="green">
                                                                                 <option value="0" selected>0
                                                                                 </option>
                                                                                 <option value="1">1</option>
@@ -525,9 +539,11 @@
                                                                     </tr>
                                                                     <tr class="thm3">
                                                                         <td>Horror and Occult</td>
-                                                                        <td><strong><a id="occurance3">0</a></strong></td>
+                                                                        <td><strong><a id="occurance3">0</a></strong>
+                                                                        </td>
                                                                         <td>
-                                                                            <select class="bs-select form-control input-xsmall themeSelect" data-style="green">
+                                                                            <select class="bs-select form-control input-xsmall themeSelect"
+                                                                                    data-style="green">
                                                                                 <option value="0" selected>0
                                                                                 </option>
                                                                                 <option value="1">1</option>
@@ -540,10 +556,14 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="thm4">
-                                                                        <td>Drugs, Smoking, Tobacco, Solvents and Alcohol</td>
-                                                                        <td><strong><a id="occurance4">0</a></strong></td>
+                                                                        <td>Drugs, Smoking, Tobacco, Solvents and
+                                                                            Alcohol
+                                                                        </td>
+                                                                        <td><strong><a id="occurance4">0</a></strong>
+                                                                        </td>
                                                                         <td>
-                                                                            <select class="bs-select form-control input-xsmall themeSelect" data-style="green">
+                                                                            <select class="bs-select form-control input-xsmall themeSelect"
+                                                                                    data-style="green">
                                                                                 <option value="0" selected>0
                                                                                 </option>
                                                                                 <option value="1">1</option>
@@ -557,9 +577,11 @@
                                                                     </tr>
                                                                     <tr class="thm5">
                                                                         <td>Profanity,Religion and Community</td>
-                                                                        <td><strong><a id="occurance5">0</a></strong></td>
+                                                                        <td><strong><a id="occurance5">0</a></strong>
+                                                                        </td>
                                                                         <td>
-                                                                            <select class="bs-select form-control input-xsmall themeSelect" data-style="green">
+                                                                            <select class="bs-select form-control input-xsmall themeSelect"
+                                                                                    data-style="green">
                                                                                 <option value="0" selected>0
                                                                                 </option>
                                                                                 <option value="1">1</option>
@@ -572,8 +594,11 @@
                                                                         </td>
                                                                     </tr>
                                                                     <tr class="thm6">
-                                                                        <td>Propaganda for War, hate Speech and Incitement Parameters</td>
-                                                                        <td><strong><a id="occurance6">0</a></strong></td>
+                                                                        <td>Propaganda for War, hate Speech and
+                                                                            Incitement Parameters
+                                                                        </td>
+                                                                        <td><strong><a id="occurance6">0</a></strong>
+                                                                        </td>
                                                                         <td>
                                                                             <select class="bs-select form-control input-xsmall themeSelect"
                                                                                     data-style="green">
@@ -652,7 +677,8 @@
                                                         <div class="portlet box blue">
                                                             <div class="portlet-title">
                                                                 <div class="caption">
-                                                                    <i class="fa fa-save"></i>Save and Submit </div>
+                                                                    <i class="fa fa-save"></i>Save and Submit
+                                                                </div>
 
                                                             </div>
                                                             <div class="portlet-body">
@@ -662,19 +688,33 @@
                                                                 <div class="form-group">
                                                                     <span class="col-sm-6 control-label">System Suggested Rating is:</span>
                                                                     <div class="col-sm-6">
-                                                                        <span class="text-danger text-bold" id="sysRating">0 </span>:<span class="text-danger text-bold" id="sysRatingWords">GE</span>
+                                                                        <span class="text-danger text-bold"
+                                                                              id="sysRating">0 </span>:<span
+                                                                                class="text-danger text-bold"
+                                                                                id="sysRatingWords">GE</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="divider"></div>
                                                                 <div class="form-group">
-                                                                    <label class="col-sm-3 control-label">Select Final Rating</label>
+                                                                    <label class="col-sm-3 control-label">Select Final
+                                                                        Rating</label>
                                                                     <div class="col-sm-9">
-                                                                        <select id="enterRatingScore" name="enterRatingScore" class="col-md-12 form-control"  required>
-                                                                            <option value="">Select Final Rating...</option>
-                                                                            <option value="1">1 GE (General Exhition )</option>
-                                                                            <option value="2">2 PG (Parental Guidance Recommended)</option>
-                                                                            <option value="3">3 16 (Not Suitable to persons Under 16Yrs)</option>
-                                                                            <option value="4">4 18 (Restricted To Persons above 18Yrs)</option>
+                                                                        <select id="enterRatingScore"
+                                                                                name="enterRatingScore"
+                                                                                class="col-md-12 form-control" required>
+                                                                            <option value="">Select Final Rating...
+                                                                            </option>
+                                                                            <option value="1">1 GE (General Exhition )
+                                                                            </option>
+                                                                            <option value="2">2 PG (Parental Guidance
+                                                                                Recommended)
+                                                                            </option>
+                                                                            <option value="3">3 16 (Not Suitable to
+                                                                                persons Under 16Yrs)
+                                                                            </option>
+                                                                            <option value="4">4 18 (Restricted To
+                                                                                Persons above 18Yrs)
+                                                                            </option>
                                                                             <option value="5">5 R (Restricted)</option>
                                                                         </select>
                                                                     </div>
@@ -692,9 +732,12 @@
                                                                     </div>
                                                                 @endif
                                                                 <div class="form-group">
-                                                                    <label class="col-sm-3 control-label">Enter Justification</label>
+                                                                    <label class="col-sm-3 control-label">Enter
+                                                                        Justification</label>
                                                                     <div class="col-sm-9">
-                                                                        <textarea class="form-control" rows="3" id="enterComment" name="enterSynopsis" required></textarea>
+                                                                        <textarea class="form-control" rows="3"
+                                                                                  id="enterComment" name="enterSynopsis"
+                                                                                  required></textarea>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -710,10 +753,12 @@
                                             <div class="col-md-offset-3 col-md-9">
                                                 <a href="javascript:;" class="btn default button-previous">
                                                     <i class="fa fa-angle-left"></i> Back </a>
-                                                <a href="javascript:;" class="btn btn-outline green button-next" id="button-next"> Continue
+                                                <a href="javascript:;" class="btn btn-outline green button-next"
+                                                   id="button-next"> Continue
                                                     <i class="fa fa-angle-right"></i>
                                                 </a>
-                                                <a href="javascript:;" class="btn green button-submit" id="btnSubmitAll"> Submit
+                                                <a href="javascript:;" class="btn green button-submit"
+                                                   id="btnSubmitAll"> Submit
                                                     <i class="fa fa-check"></i>
                                                 </a>
                                             </div>
@@ -738,7 +783,8 @@
 
     <script type="text/javascript" src="{{asset('assets/js/datatables/media/js/jquery.dataTables.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('assets/js/datatables/media/assets/js/datatables.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('assets/js/datatables/extras/TableTools/media/js/TableTools.min.js')}}"></script>
+    <script type="text/javascript"
+            src="{{asset('assets/js/datatables/extras/TableTools/media/js/TableTools.min.js')}}"></script>
 @endsection
 @section('end')
     <script type='text/javascript' charset="utf-8">
@@ -751,12 +797,12 @@
             });
             var countClicks = 0;
             var theme1 = 0;
-            var theme2  =0;
-            var theme3  =0;
-            var theme4  =0;
-            var theme5  =0;
-            var theme6  =0;
-            var sysRating  =0;
+            var theme2 = 0;
+            var theme3 = 0;
+            var theme4 = 0;
+            var theme5 = 0;
+            var theme6 = 0;
+            var sysRating = 0;
             var index = 0;
             var h1 = document.getElementsByTagName('h1')[0],
                     start = document.getElementById('start'),
@@ -790,9 +836,11 @@
 
                 timer();
             }
+
             function timer() {
                 t = setTimeout(add, 1000);
             }
+
             timer();
 
 
@@ -800,14 +848,16 @@
             start.onclick = timer;
 
             /* Stop button */
-            stop.onclick = function() {
+            stop.onclick = function () {
                 clearTimeout(t);
             };
 
             /* Clear button */
-            clear.onclick = function() {
+            clear.onclick = function () {
                 h1.textContent = "00:00:00";
-                seconds = 0; minutes = 0; hours = 0;
+                seconds = 0;
+                minutes = 0;
+                hours = 0;
             };
             $("#btnTheme11").click(function () {
                 var id = "<?php echo $film->id; ?>";
@@ -889,7 +939,7 @@
             });
             $("#btnTheme1").click(function () {
                 var id = "<?php echo $film->id; ?>";
-                var themeID=1;
+                var themeID = 1;
                 theme1 += 1;
                 document.getElementById("theme1").innerHTML = theme1;
                 document.getElementById("occurance1").innerHTML = theme1;
@@ -898,9 +948,9 @@
                 } else {
                     $(".thm1").show();
                 }
-                var time_at=hours+":"+minutes+":"+seconds;
+                var time_at = hours + ":" + minutes + ":" + seconds;
                 var filmID = "<?php echo $film->id; ?>"; //get film id
-                var userID= "<?php echo Auth::User()->id?>";
+                var userID = "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
                 var dataString = {filmID: filmID, userID: userID, themeID: themeID, _token: token, time_at: time_at};
                 // AJAX Code To Submit Form.
@@ -909,7 +959,7 @@
                     url: "<?php echo url('storeTimeOccurance'); ?>",
                     data: dataString,
                     cache: false,
-                    success: function(data, status){
+                    success: function (data, status) {
                         drawDataTable1();
                     }
                 });
@@ -917,7 +967,7 @@
             });
             $("#btnTheme2").click(function () {
                 var id = "<?php echo $film->id; ?>";
-                var themeID=2;
+                var themeID = 2;
                 theme2 += 1;
                 document.getElementById("theme2").innerHTML = theme2;
                 document.getElementById("occurance2").innerHTML = theme2;
@@ -926,9 +976,9 @@
                 } else {
                     $(".thm2").show();
                 }
-                var time_at=hours+":"+minutes+":"+seconds;
+                var time_at = hours + ":" + minutes + ":" + seconds;
                 var filmID = "<?php echo $film->id; ?>"; //get film id
-                var userID= "<?php echo Auth::User()->id?>";
+                var userID = "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
                 var dataString = {filmID: filmID, userID: userID, themeID: themeID, _token: token, time_at: time_at};
                 // AJAX Code To Submit Form.
@@ -937,14 +987,14 @@
                     url: "<?php echo url('storeTimeOccurance'); ?>",
                     data: dataString,
                     cache: false,
-                    success: function(data, status){
+                    success: function (data, status) {
                         drawDataTable1();
                     }
                 });
             });
             $("#btnTheme3").click(function () {
                 var id = "<?php echo $film->id; ?>";
-                var themeID=3;
+                var themeID = 3;
                 theme3 += 1;
                 document.getElementById("theme3").innerHTML = theme3;
                 document.getElementById("occurance3").innerHTML = theme3;
@@ -953,9 +1003,9 @@
                 } else {
                     $(".thm3").show();
                 }
-                var time_at=hours+":"+minutes+":"+seconds;
+                var time_at = hours + ":" + minutes + ":" + seconds;
                 var filmID = "<?php echo $film->id; ?>"; //get film id
-                var userID= "<?php echo Auth::User()->id?>";
+                var userID = "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
                 var dataString = {filmID: filmID, userID: userID, themeID: themeID, _token: token, time_at: time_at};
                 // AJAX Code To Submit Form.
@@ -964,14 +1014,14 @@
                     url: "<?php echo url('storeTimeOccurance'); ?>",
                     data: dataString,
                     cache: false,
-                    success: function(data, status){
+                    success: function (data, status) {
                         drawDataTable1();
                     }
                 });
             });
             $("#btnTheme4").click(function () {
                 var id = "<?php echo $film->id; ?>";
-                var themeID=4;
+                var themeID = 4;
                 theme4 += 1;
                 document.getElementById("theme4").innerHTML = theme4;
                 document.getElementById("occurance4").innerHTML = theme4;
@@ -980,9 +1030,9 @@
                 } else {
                     $(".thm4").show();
                 }
-                var time_at=hours+":"+minutes+":"+seconds;
+                var time_at = hours + ":" + minutes + ":" + seconds;
                 var filmID = "<?php echo $film->id; ?>"; //get film id
-                var userID= "<?php echo Auth::User()->id?>";
+                var userID = "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
                 var dataString = {filmID: filmID, userID: userID, themeID: themeID, _token: token, time_at: time_at};
                 // AJAX Code To Submit Form.
@@ -991,7 +1041,7 @@
                     url: "<?php echo url('storeTimeOccurance'); ?>",
                     data: dataString,
                     cache: false,
-                    success: function(data, status){
+                    success: function (data, status) {
                         drawDataTable1();
                     }
                 });
@@ -999,7 +1049,7 @@
             });
             $("#btnTheme5").click(function () {
                 var id = "<?php echo $film->id; ?>";
-                var themeID=5;
+                var themeID = 5;
                 theme5 += 1;
                 document.getElementById("theme5").innerHTML = theme5;
                 document.getElementById("occurance5").innerHTML = theme5;
@@ -1008,9 +1058,9 @@
                 } else {
                     $(".thm5").show();
                 }
-                var time_at=hours+":"+minutes+":"+seconds;
+                var time_at = hours + ":" + minutes + ":" + seconds;
                 var filmID = "<?php echo $film->id; ?>"; //get film id
-                var userID= "<?php echo Auth::User()->id?>";
+                var userID = "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
                 var dataString = {filmID: filmID, userID: userID, themeID: themeID, _token: token, time_at: time_at};
                 // AJAX Code To Submit Form.
@@ -1019,7 +1069,7 @@
                     url: "<?php echo url('storeTimeOccurance'); ?>",
                     data: dataString,
                     cache: false,
-                    success: function(data, status){
+                    success: function (data, status) {
                         drawDataTable1();
                     }
                 });
@@ -1027,7 +1077,7 @@
             });
             $("#btnTheme6").click(function () {
                 var id = "<?php echo $film->id; ?>";
-                var themeID=6;
+                var themeID = 6;
                 theme6 += 1;
                 document.getElementById("theme6").innerHTML = theme6;
                 document.getElementById("occurance6").innerHTML = theme6;
@@ -1036,9 +1086,9 @@
                 } else {
                     $(".thm6").show();
                 }
-                var time_at=hours+":"+minutes+":"+seconds;
+                var time_at = hours + ":" + minutes + ":" + seconds;
                 var filmID = "<?php echo $film->id; ?>"; //get film id
-                var userID= "<?php echo Auth::User()->id?>";
+                var userID = "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
                 var dataString = {filmID: filmID, userID: userID, themeID: themeID, _token: token, time_at: time_at};
                 // AJAX Code To Submit Form.
@@ -1047,35 +1097,35 @@
                     url: "<?php echo url('storeTimeOccurance'); ?>",
                     data: dataString,
                     cache: false,
-                    success: function(data, status){
+                    success: function (data, status) {
                         drawDataTable1();
                     }
                 });
             });
-            drawDataTable = function(){
+            drawDataTable = function () {
                 var filmID = "<?php echo $film->id; ?>"; //get film id
-                oTable =  $('#viewTempParameter').DataTable( {
+                oTable = $('#viewTempParameter').DataTable({
                     responsive: true,
                     stateSave: true,
                     destroy: true,
-                    "sAjaxSource": "<?php echo url('/get_temp_param/') ?>/"+filmID,
+                    "sAjaxSource": "<?php echo url('/get_temp_param/') ?>/" + filmID,
                     "aoColumns": [
                         {mData: 'name'},
                     ]
-                } );
+                });
             };
-            drawDataTable1 = function(){
+            drawDataTable1 = function () {
                 var filmID = "<?php echo $film->id; ?>"; //get film id
-                oTable =  $('#viewThemeTimeOccurance').DataTable( {
+                oTable = $('#viewThemeTimeOccurance').DataTable({
                     responsive: true,
                     stateSave: true,
                     destroy: true,
-                    "sAjaxSource": "<?php echo url('/get_theme_time_occurance/') ?>/"+filmID,
+                    "sAjaxSource": "<?php echo url('/get_theme_time_occurance/') ?>/" + filmID,
                     "aoColumns": [
                         {mData: 'name'},
                         {mData: 'time_at'},
                     ]
-                } );
+                });
             };
 
             drawDataTable();
@@ -1140,7 +1190,7 @@
                 var editNotification = $("#editNotification");
                 var editNotifications = $("#editNotifications");
                 var createNotification = $("#createNotification");
-                var frm=("frmCreate");
+                var frm = ("frmCreate");
                 var index = "<?php echo $synopsis;?>";
                 var me = "<?php echo $me;?>";
                 editNotifications.hide();
@@ -1153,15 +1203,28 @@
                 var five = document.getElementById("occurance5").innerHTML;
                 var six = document.getElementById("occurance6").innerHTML;
                 var system = document.getElementById("sysRating").innerHTML;
-                if(index==me){
+                if (index == me) {
                     var synopsis = document.getElementById("enterSynopsis").value;
                 }
                 var ratescore = document.getElementById("enterRatingScore").value;
                 var comment = document.getElementById("enterComment").value;
                 $.ajax({
                     type: "POST",
-                    url: "<?php echo url('rate'); ?>/"+filmID,
-                    data: {filmID: filmID,filmName: filmName,system:system,comment:comment, synopsis: synopsis, ratescore: ratescore,one:one,two:two,three:three,four:four,five:five,six:six },
+                    url: "<?php echo url('rate'); ?>/" + filmID,
+                    data: {
+                        filmID: filmID,
+                        filmName: filmName,
+                        system: system,
+                        comment: comment,
+                        synopsis: synopsis,
+                        ratescore: ratescore,
+                        one: one,
+                        two: two,
+                        three: three,
+                        four: four,
+                        five: five,
+                        six: six
+                    },
                     success: function (data, status) {
                         switch (status) {
                             case "success":
@@ -1172,8 +1235,8 @@
 
                                 } else if (data.status === '01') {
                                     createNotification.hide().find('#ul').empty();
-                                    $.each(data.errors,function(index,error){
-                                        createNotification.html('<div class="alert alert-danger">'+'<li>'+data.error+'</li>' +'</div>');
+                                    $.each(data.errors, function (index, error) {
+                                        createNotification.html('<div class="alert alert-danger">' + '<li>' + data.error + '</li>' + '</div>');
                                     });
                                     createNotification.show();
                                 }
@@ -1196,7 +1259,7 @@
                 var paramID = $(this).data('id'); // get the ID
                 var name = $(this).data('name'); // get the Name
                 var filmID = "<?php echo $film->id; ?>"; //get film id
-                var userID= "<?php echo Auth::User()->id?>";
+                var userID = "<?php echo Auth::User()->id?>";
                 var dataString = {filmID: filmID, paramID: paramID, userID: userID, name: name};
 
                 // AJAX Code To Submit Form.
@@ -1205,7 +1268,7 @@
                     url: "<?php echo url('storerate'); ?>",
                     data: dataString,
                     cache: false,
-                    success: function(data, status){
+                    success: function (data, status) {
                         // alert(data.message);
 
                     }
@@ -1216,7 +1279,7 @@
                 var paramID = $(this).data('id'); // get the ID
                 var name = $(this).data('name'); // get the Name
                 var filmID = "<?php echo $film->id; ?>"; //get film id
-                var userID= "<?php echo Auth::User()->id?>";
+                var userID = "<?php echo Auth::User()->id?>";
                 var dataString = {filmID: filmID, paramID: paramID, userID: userID, name: name};
 
                 // // AJAX Code To Submit Form.
@@ -1244,29 +1307,36 @@
                 var paramID = $(this).data('id'); // get the ID
                 var name = $(this).data('name'); // get the Name
                 var filmID = "<?php echo $film->id; ?>"; //get film id
-                var userID= "<?php echo Auth::User()->id?>";
+                var userID = "<?php echo Auth::User()->id?>";
                 var token = $(this).data('token');
                 var dataString = {filmID: filmID, paramID: paramID, userID: userID, name: name, _token: token};
 
-                if(this.checked) {
+                if (this.checked) {
                     $.ajax({
                         type: "POST",
                         url: "<?php echo url('storerate'); ?>",
                         data: dataString,
                         cache: false,
-                        success: function(data, status){
+                        success: function (data, status) {
                             // alert(data.message);
 
                         }
                     });
                     drawDataTable();
-                }else{
+                } else {
                     $.ajax({
                         type: "POST",
                         url: "<?php echo url('removerate'); ?>",
-                        data: {_method: 'delete', _token :token,filmID: filmID, paramID: paramID, userID: userID,name:name},
+                        data: {
+                            _method: 'delete',
+                            _token: token,
+                            filmID: filmID,
+                            paramID: paramID,
+                            userID: userID,
+                            name: name
+                        },
                         cache: false,
-                        success: function(data, status){
+                        success: function (data, status) {
                             // alert(data.message);
 
                         }
@@ -1274,21 +1344,24 @@
                     drawDataTable();
                 }
             });
-            $('.themeSelect').change(function() {
-                var themeVal=$(this).val();
-                var currentValue=document.getElementById("sysRating").innerHTML;
+            $('.themeSelect').change(function () {
+                var themeVal = $(this).val();
+                var currentValue = document.getElementById("sysRating").innerHTML;
                 if (themeVal > currentValue) {
-                    document.getElementById('sysRating').innerHTML=themeVal;
-                    if(themeVal=="1"){
-                        document.getElementById('sysRatingWords').innerHTML="GE General Exhition";
-                    }else if(themeVal=="2"){
-                        document.getElementById('sysRatingWords').innerHTML="PG Parental Guidance Recommended";
-                    }if(themeVal=="3"){
-                        document.getElementById('sysRatingWords').innerHTML="Not Suitable to persons Under 16 Years";
-                    }if(themeVal=="4"){
-                        document.getElementById('sysRatingWords').innerHTML="Restricted to persons above 18 Years";
-                    }if(themeVal=="5"){
-                        document.getElementById('sysRatingWords').innerHTML="Restricted";
+                    document.getElementById('sysRating').innerHTML = themeVal;
+                    if (themeVal == "1") {
+                        document.getElementById('sysRatingWords').innerHTML = "GE General Exhition";
+                    } else if (themeVal == "2") {
+                        document.getElementById('sysRatingWords').innerHTML = "PG Parental Guidance Recommended";
+                    }
+                    if (themeVal == "3") {
+                        document.getElementById('sysRatingWords').innerHTML = "Not Suitable to persons Under 16 Years";
+                    }
+                    if (themeVal == "4") {
+                        document.getElementById('sysRatingWords').innerHTML = "Restricted to persons above 18 Years";
+                    }
+                    if (themeVal == "5") {
+                        document.getElementById('sysRatingWords').innerHTML = "Restricted";
                     }
                 }
             });

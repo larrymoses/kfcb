@@ -40,8 +40,11 @@ Route::group(['middleware' => ['super']], function () {
 	Route::get('get_theme_time_occurance/{filmID}', 'RatersController@get_theme_time_occurance');
 	Route::get('getlogs', 'AuditLogsController@getLogs');
 	Route::get('films/get_list', 'FilmController@getFilmsList');
+	Route::get('films/get_examiners', 'FilmController@getFilmsExaminers');
 	Route::get('reports/get_list', 'ReportController@getFilmsList');
 	Route::get('films/synopsis', 'FilmController@filmSynopsis');
+	Route::get('assignexaminers', 'FilmController@assignExaminers');
+	Route::get('get_films_examiners/{id}', 'FilmController@getFilmsExaminersByID');
 	Route::post('poster', 'FilmController@poster');
 	Route::post('video', 'FilmController@video');
 	Route::get('/profile', 'ProfileController@index');
@@ -52,9 +55,17 @@ Route::group(['middleware' => ['super']], function () {
 	Route::get('/unrated/get_list/', 'UnratedController@getFilmsList');
 	Route::get('/rated/get_list/', 'RatedController@getFilmsList');
 	Route::get('/get_films_to_rate/', 'RatersController@getFilmsList');
+	Route::get('/viewrate/{id}', 'RatersController@getFilmsRatrPerUser');
 	Route::get('/get_films_posters_to_rate/', 'RatersController@getFilmsPostersList');
 	Route::get('/rate_poster/', 'RatersController@rate_poster');
 	Route::get('/poster_rate/{id}', 'RatersController@poster_rate');
+
+	Route::get('/mrater/', 'MRaterController@index');
+	Route::get('/mrate/{id}', 'MRaterController@rate');
+	Route::get('/mposter/', 'MRaterController@rate_poster');
+	Route::get('/get_m_films_to_rate/', 'MRaterController@getFilmsList');
+
+	
 	Route::post('/poster_rate/{id}', 'RatersController@store_poster_rate');
 	Route::get('/certificate/print/{id}', 'RatedController@printCertificate');
 	Route::get('certificate/poster/{id}', 'RatedController@posterCertificate');

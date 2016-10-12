@@ -26,6 +26,7 @@ class RatersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         return view('raters.index');
@@ -34,7 +35,6 @@ class RatersController extends Controller
     {
         return view('raters.poster');
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -43,6 +43,11 @@ class RatersController extends Controller
     public function history()
     {
         return view('raters.history');
+    }
+
+    public function getFilmsRatrPerUser($id)
+    {
+        return view('raters.getdetails');
     }
 
     /**
@@ -303,7 +308,7 @@ class RatersController extends Controller
             ->where('film_examiners.userID', $id)
             ->where('film_examiners.status', 1)
         ->select('films.*');
-        $action='<a href="'.url("/rate/".'{{ $id }}').'"  class="btn btn-primary btn-xs">Start Rate</a>';
+        $action = '<a href="' . url("/viewrate/" . '{{ $id }}') . '"  class="btn btn-primary btn-xs">View</a>';
         return Datatables::of($films)
             ->editColumn('id',"{{ \$id }}")
             ->addColumn('actions',$action)

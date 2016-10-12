@@ -219,7 +219,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="panel-body">
-                        <form class="form-horizontal" id="frmCreate">
+                        <div class="alert" id="editNotification" style="display: none;">
+                            <ul id="ul" class="ul"></ul>
+                        </div>
+                        <form class="form-horizontal" id="frmEdit">
 
                             <div class="form-group">
                                 <label class="col-md-3 control-label">First Name</label>
@@ -248,16 +251,7 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Select User Group</label>
                                 <div class="col-md-9">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-
-                                <label class="col-md-3 control-label">City/Town</label>
-                                <div class="col-md-9">
-                                    <input class="form-control placeholder-no-fix" type="text" id="editCity"
-                                           name="city">
+                                    {!! Form::select('GroupID',[''=>'Select Group']+ $groups,'', array('id'=>'editGroupID','class' => 'form-control'),['required'],'' ) !!}
                                 </div>
                             </div>
 
@@ -272,33 +266,30 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Email</label>
                                 <div class="col-md-9">
-                                    <input type="email" class="form-control input" id="editEmail" name="email" readonly>
+                                    <input type="email" class="form-control input" id="editEmail" name="email">
                                     <input type="hidden" id="enditUserID"/>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Password</label>
-                                <div class="col-md-9">
-                                    <input class="form-control placeholder-no-fix" type="password" id="password"
-                                           placeholder="Password" name="password"/>
-                                </div>
-                            </div>
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Re-type Your Password</label>
-                                <div class="col-md-9">
-                                    <input class="form-control placeholder-no-fix" type="password" autocomplete="off"
-                                           id="password_confirmation" placeholder="Re-type Your Password"
-                                           name="password_confirmation"/>
-                                </div>
-                            </div>
+                            {{--<div class="form-group">--}}
+                            {{--<label class="col-md-3 control-label">Password</label>--}}
+                            {{--<div class="col-md-9">--}}
+                            {{--<input class="form-control placeholder-no-fix" type="password"  id="password" placeholder="Password" name="password"/>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+                            {{--<input type="hidden" name="_token" value="{{ csrf_token() }}" />--}}
+                            {{--<div class="form-group">--}}
+                            {{--<label class="col-md-3 control-label">Re-type Your Password</label>--}}
+                            {{--<div class="col-md-9">--}}
+                            {{--<input class="form-control placeholder-no-fix" type="password" autocomplete="off"  id="password_confirmation" placeholder="Re-type Your Password" name="password_confirmation"/>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
                             {{ csrf_field() }}
                         </form>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btnSaveEdit" class="btn btn-success">Save changes</button>
-                    <button type="button" id="closeEdit" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    <button type="button" id="editClose" class="btn btn-danger" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -358,32 +349,32 @@
     </div>
     {{--End of Group Deactivate Modal Window--}}
     {{--Group Deactivate Windows--}}
-    <div class="modal fade bs-example-modal-approve" id="posadminModal" tabindex="-1" role="dialog"
+    <div class="modal fade bs-example-modal-reactivate" id="posadminModal" tabindex="-1" role="dialog"
          data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header panel panel-success">
                     <button aria-hidden="true" data-dismiss="modal" class="close" type="button">x</button>
-                    <h4 class="modal-title">Approve User </h4>
+                    <h4 class="modal-title">Reactivate <span id="reactivateNames"></span></h4>
                 </div>
                 <div class="modal-body">
-                    <div class="alert" id="activateNotification" style="display: none;">
+                    <div class="alert" id="reactivateNotification" style="display: none;">
                         <ul id="ul" class="ul"></ul>
                     </div>
-                    <form id="frmActivate" class="form-horizontal form-bordered">
+                    <form id="frmReactivate" class="form-horizontal form-bordered">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
-                                <p> Are you sure you want to Approve <code><label id="activateUser"></label></code> ?
-                                </p>
-                                <input type="hidden" id="activateId">
+                                <p> Are you sure you want to Re-Activate <code><label
+                                                id="reactivateName"></label></code> ?</p>
+                                <input type="hidden" id="reactivateID">
                             </div>
                         </div><!-- panel -->
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" id="btnActivate" class="btn btn-success">Approve Activation</button>
-                    <a href="{{url('/musers')}}" type="button" class="btn btn-default">Close</a>
+                    <button type="submit" id="btnActivate" class="btn btn-success">Approve Re-Activation</button>
+                    <a href="{{url('/users')}}" type="button" class="btn btn-default">Close</a>
                 </div>
             </div>
         </div>
@@ -412,7 +403,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" id="btnRemove" class="btn btn-success">Delete User</button>
-                    <a href="{{url('/musers')}}" type="button" class="btn btn-default">Close</a>
+                    <a href="{{url('/users')}}" type="button" class="btn btn-default">Close</a>
                 </div>
             </div>
         </div>
@@ -438,7 +429,7 @@
             oTable = $('#usersActive').DataTable({
                 responsive: true,
                 stateSave: true,
-                "sAjaxSource": "<?php echo url('/mgetusers/1') ?>",
+                "sAjaxSource": "<?php echo url('/getusers/1') ?>",
                 "aoColumns": [
                     {mData: 'name'},
                     {mData: 'email'},
@@ -453,7 +444,7 @@
             oTable = $('#groupsPending').DataTable({
                 responsive: true,
                 stateSave: true,
-                "sAjaxSource": "<?php echo url('/mgetusers/0') ?>",
+                "sAjaxSource": "<?php echo url('/getusers/0') ?>",
                 "aoColumns": [
                     {mData: 'name'},
                     {mData: 'email'},
@@ -467,7 +458,7 @@
             oTable = $('#groupsBlocked').DataTable({
                 responsive: true,
                 stateSave: true,
-                "sAjaxSource": "<?php echo url('/mgetusers/3') ?>",
+                "sAjaxSource": "<?php echo url('/getusers/3') ?>",
                 "aoColumns": [
                     {mData: 'name'},
                     {mData: 'email'},
@@ -481,7 +472,7 @@
             oTable = $('#groupsPendingDeletion').DataTable({
                 responsive: true,
                 stateSave: true,
-                "sAjaxSource": "<?php echo url('/mgetusers/4') ?>",
+                "sAjaxSource": "<?php echo url('/getusers/4') ?>",
                 "aoColumns": [
                     {mData: 'name'},
                     {mData: 'email'},
@@ -559,9 +550,8 @@
                                 document.getElementById("editFirstname").value = res.first_name;
                                 document.getElementById("editLastname").value = res.last_name;
                                 document.getElementById("editUsername").value = res.username;
-                                document.getElementById("editCity").value = res.city;
                                 document.getElementById("editEmail").value = res.email;
-                                // document.getElementById("editGroupID").value = res.GroupID;
+                                document.getElementById("editGroupID").value = res.GroupID;
                                 document.getElementById("editPhone").value = res.phone;
                                 $('#editModal').modal('show');
                                 console(data);
@@ -587,8 +577,8 @@
                 var lastname = $("#editLastname").val();
                 var username = $("#editUsername").val();
                 var phone = $("#editPhone").val();
-                var city = $("#editCity").val();
                 var email = $("#editEmail").val();
+                var GroupID = $("#editGroupID").val();
                 var password = $("#password").val();
                 var id = $("#enditUserID").val();
                 $.ajax({
@@ -596,12 +586,13 @@
                     url: "users/" + id,
                     data: {
                         id: id,
+                        GroupID: GroupID,
                         firstname: firstname,
                         lastname: lastname,
                         password: password,
                         email: email,
                         phone: phone,
-                        city: city
+                        username: username
                     },
                     success: function (data, status) {
                         switch (status) {
@@ -637,11 +628,22 @@
             document.getElementById("activateId").value = id;
             document.getElementById("activateUser").innerHTML = name;
         });
-        $("#btnActivate").click(function () {
-            var editNotification = $("#activateNotification");
-            editNotification.hide();
+        $(document).on('click', '.reactivate', function () {
+
+            var id = $(this).data('id'); // get the ID
+
+            var name = $(this).data('name'); // get the Name
+            var notification = $("#reactivateNotification");
             var frm = $("#frmActivate");
-            var id = $("#activateId").val();
+            var btnActivate = $("#btnActivate");
+            document.getElementById("reactivateID").value = id;
+            document.getElementById("reactivateName").innerHTML = name;
+        });
+        $("#btnActivate").click(function () {
+            var editNotification = $("#reactivateNotification");
+            editNotification.hide();
+            var frm = $("#frmReactivate");
+            var id = $("#reactivateID").val();
             var updater = 3;
             var updatestatus = 1; //Status code for Active
 

@@ -106,6 +106,12 @@ class FilmController extends Controller
     {
         return view('films.rated');
     }
+
+    public function assignExaminers()
+    {
+        $users = Users::where('GroupID', 3)->get();
+        return view('films.filmexaminers', compact('users'));
+    }
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -120,6 +126,7 @@ class FilmController extends Controller
         $film->genre = $request->input('genre');
         $film->producer = $request->input('producer');
         $film->synopsis_examiner = $request->input('producer');
+        $film->venue = $request->input('venue');
         $film->poster = $request->input('poster');
         $film->year_of_production = $request->input('year_of_production');
         $film->description = $request->input('description');
@@ -141,7 +148,7 @@ class FilmController extends Controller
 
         DB::insert('insert into synopsis_examiners (userID, filmID) values (?, ?)', [$examiner, $filmID]);
 
-        $users = DB::table('users')->where('GroupID',3)->get();;
+        $users = DB::table('users')->where('GroupID', 3)->orWhere('GroupID', 4)->get();;
 
         foreach ($users as $user) {
             DB::insert('insert into film_examiners (userID, filmID) values (?, ?)', [$user->id, $filmID]);
@@ -210,6 +217,54 @@ class FilmController extends Controller
             ->addColumn('actions',$action)
             ->make(true);
     }
+
+    public function getFilmsExaminers()
+    {
+        $action = '<div class="btn-group">
+                            <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">Action <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                               <div class="clearfix"></div>
+                               <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-edit" data-id=" {{ $id }}" class="edit">Edit</a></li>
+                                <div class="clearfix"></div>
+                                @if($rated===2)
+                                    <li><a href="' . url("certificate/print/" . '{{ $id }}') . '"   data-id=" {{ $id }}" data-name="{{$name}}" class="class="btn btn-primary viewToEditBtn">Film Certificate</button></li>
+                                @endif
+                                <div class="clearfix"></div>
+                                @if($posterrated==1)
+                                    <li><a href="' . url("certificate/poster/" . '{{ $id }}') . '"   data-id=" {{ $id }}" data-name="{{$name}}" class="class="btn btn-primary viewToEditBtn">Poster Certificate</button></li>
+                                @endif
+                                <div class="clearfix"></div>
+                                @if($rated===0)
+                                <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-upload" data-id=" {{ $id }}" data-name="{{$name}}" data-sname="{{$name}}" class="upload">Upload Film</a></li>
+                                    @if($poster=="Yes")
+                                        @if($posteruploaded==0)
+                                        <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-poster" data-id=" {{ $id }}" data-name="{{$name}}" class="poster">Upload Poster</a></li>
+                                        @elseif($posteruploaded==1)
+                                        <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-poster" data-id=" {{ $id }}" data-name="{{$name}}" class="poster">Update Poster</a></li>
+                                    @endif
+                                    @endif
+                                @endif
+                                <div class="clearfix"></div>
+                            </ul>
+                        </div>';
+        $films = DB::table('films');
+        return Datatables::of($films)
+            ->editColumn('rated', '@if($rated==0)
+                                <span class="badge badge-default">Awaiting Rating</span>
+                            @elseif($rated==1)
+                                <span class="badge badge-primary">Awaiting Moderation</span>
+                            @elseif($rated==2)
+                                <span class="badge badge-success">Rating Successful</span>
+                            @elseif($rated==3)
+                                <code class="badge badge-danger">Rectected</code>
+                            @endif')
+            ->editColumn('poster', '
+                                    <button data-toggle="modal" data-target=".bs-example-modal-viewexaminers" data-id=" {{ $id }}" data-name="{{$name}}" class="btn btn-circle btn-success btn-xs viewexaminers">View Examiners</button>
+                            ')
+            ->editColumn('id', "{{ \$id }}")
+            ->addColumn('actions', $action)
+            ->make(true);
+    }
     public function getRatedFilmsList()
     {
         $films = DB::table('films')->where('rated',1);
@@ -219,6 +274,20 @@ class FilmController extends Controller
                                 <li><a href="'.url("rate/page1/".'{{ $id }}').'"   data-id=" {{ $id }}" data-name="{{$name}}" class="class="btn btn-primary viewToEditBtn">View Rate Film</button></li>
                             </ul>
                         </div>';
+
+        return Datatables::of($films)
+            ->editColumn('id', "{{ \$id }}")
+            ->addColumn('actions', $action)
+            ->make(true);
+    }
+
+    public function getFilmsExaminersByID($id)
+    {
+        $films = DB::table('users')
+            ->join('film_examiners', 'users.id', '=', 'film_examiners.userID')
+            ->where('film_examiners.filmID', $id)
+            ->select('users.name', 'film_examiners.*');
+        $action = '<button data-toggle="modal" data-target=".bs-example-modal-removeexaminer" data-id=" {{ $id }}" data-name="{{$name}}" class="btn btn-danger btn-xs btn-circle removeexaminer">Remove</button>';
 
         return Datatables::of($films)
             ->editColumn('id',"{{ \$id }}")

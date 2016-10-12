@@ -162,6 +162,11 @@
                             </a>
                         </li>
                         <li class="nav-item  ">
+                            <a href="{{url('assignexaminers')}}" class="nav-link ">
+                                <span class="title">Film Examiners</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
                             <a href="{{url('ratedfilms')}}" class="nav-link ">
                                 <span class="title">Rated Films</span>
                             </a>
@@ -171,6 +176,26 @@
                                 <span class="title">Assign Examiner to Film for Synopsis Capture</span>
                             </a>
                         </li>
+                    </ul>
+                </li>
+                <li class="nav-item  ">
+                    <a href="javascript:;" class="nav-link nav-toggle">
+                        <i class="icon-film"></i>
+                        <span class="title">Film Examination</span>
+                        <span class="arrow"></span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li class="nav-item  ">
+                            <a href="{{url('mrater')}}" class="nav-link ">
+                                <span class="title">Unexamined Films</span>
+                            </a>
+                        </li>
+                        <li class="nav-item  ">
+                            <a href="{{url('mposter')}}" class="nav-link ">
+                                <span class="title">Unexamined Posters</span>
+                            </a>
+                        </li>
+
                     </ul>
                 </li>
                 <li class="nav-item  ">
@@ -212,7 +237,6 @@
 
                     </ul>
                 </li>
-
                 <li class="nav-item  ">
                     <a href="javascript:;" class="nav-link nav-toggle">
                         <i class="fa fa-cog"></i>

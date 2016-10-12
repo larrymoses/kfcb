@@ -86,7 +86,7 @@
                     <div class="modal-content">
                         <div class="modal-header ">
                             <button aria-hidden="true" data-dismiss="modal" class="close" type="button">x</button>
-                            <h4 class="modal-title">Deactivate Member</h4>
+                            <h4 class="modal-title">Film Examiners</h4>
                         </div>
                         <div class="modal-body">
                             <div class="panel panel-success">
@@ -229,7 +229,7 @@
                                 $.each(errors,function(index,error){
                                     createNotification.find('#ul').append('<li>'+ error +'</li>');
                                     createNotification.html('<div class="alert alert-danger">'+'<li>'+error+'</li>' +'</div>');
-                                })
+                                });
                                 createNotification.show();
                             }
                         });
@@ -264,7 +264,7 @@
                         var frm=$("#frmSelect");
                         var userid = $("#selectUserID").val();
                         var filmid = $("#selectFilmID").val();
-                        data= {userid: userid, filmid: filmid}
+                        data = {userid: userid, filmid: filmid};
                         $.ajax({
                             method: "PUT",
                             url: "<?php echo url('choose_examiner/')?>/"+filmid,
@@ -282,7 +282,7 @@
                                 $.each(errors,function(index,error){
                                     createNotification.find('#ul').append('<li>'+ error +'</li>');
                                     createNotification.html('<div class="alert alert-danger">'+'<li>'+error+'</li>' +'</div>');
-                                })
+                                });
                                 createNotification.show();
                             }
                         });

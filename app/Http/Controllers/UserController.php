@@ -1,16 +1,18 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Users;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Http\Request;
-use DB;
-use Validator;
-use Datatables;
-use App\Http\Requests;
-use Auth;
+
 use App\AuditLog;
+use App\Http\Requests;
+use App\Users;
+use Auth;
+use Datatables;
+use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Mail;
+use Validator;
+
 class UserController extends Controller
 {
     public function __construct(){
@@ -161,8 +163,8 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make(Input::All(), [
-            'username' => 'required|unique:users',
-            'email' => 'required|email|max:255|unique:users',
+            'username' => 'required',
+            'email' => 'required|email|max:255|',
         ]);
         if ($validator->fails()) {
               //Record Audit Logs
@@ -190,10 +192,13 @@ class UserController extends Controller
                 $user->save();
             }
             else{
-                $user->firstname = $request->input('firstname');
-                $user->lastname = $request->input('lastname');
+                $user->first_name = $request->input('firstname');
+                $user->last_name = $request->input('lastname');
                 $user->phone = $request->input('phone');
-                $user->city = $request->input('city');
+                $user->email = $request->input('email');
+                $user->GroupID = $request->input('GroupID');
+                $user->username = $request->input('firstname') . '_' . $request->input('lastname');;
+                $user->name = $request->input('firstname') . ' ' . $request->input('lastname');
                 $user->createdby = Auth::User()->id;
                 $user->save();
 
@@ -208,7 +213,7 @@ class UserController extends Controller
                 'success'=>false,
                 'datainput'=>$user,
                 'status'=>'00',
-                'message' =>'<code>'. Input::get('groupname').'</code>'.' Updated Successfully'
+                'message' => '<code>' . $request->input('firstname') . ' ' . $request->input('lastname') . '</code>' . ' Updated Successfully'
             ]);
         }
     }
@@ -247,8 +252,8 @@ class UserController extends Controller
             $action='<div class="btn-group">
                             <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">Action <span class="caret"></span></button>
                             <ul class="dropdown-menu">
-                               <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-deny">Deny</a></li>
-                               <li><a href="#"  data-toggle="modal" data-target=".bs-example-modal-approve">Approve</a></li>
+                               <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-deny">Delete Permanently</a></li>
+                               <li><a href="#"  data-toggle="modal" data-id=" {{ $id }}" data-name="{{$name}}" class="reactivate"  data-target=".bs-example-modal-reactivate">Re-Activate</a></li>
                                </ul>
                         </div>';
         }
