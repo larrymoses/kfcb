@@ -126,114 +126,422 @@
         <div class="page-sidebar navbar-collapse collapse">
             <!-- BEGIN SIDEBAR MENU -->
             <!-- DOC: Set data-auto-speed="200" to adjust the sub menu slide up/down speed -->
+            <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+                @if (Auth::user()->GroupID == 1)
+                    <li class="nav-item start active open">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-home"></i>
+                            <span class="title">Menu</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item start ">
+                                <a href="{{url('dashboard')}}" class="nav-link ">
+                                    <i class="icon-bar-chart"></i>
+                                    <span class="title">Dashboard</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-user"></i>
+                            <span class="title">User Management</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('users')}}" class="nav-link ">
+                                    <span class="title">System Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{url('usergroups')}}" class="nav-link ">
+                                    <span class="title">User Groups</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-film"></i>
+                            <span class="title">Film Management</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('films')}}" class="nav-link ">
+                                    <span class="title">All Films</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{url('ratedfilms')}}" class="nav-link ">
+                                    <span class="title">Rated Films</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-notebook"></i>
+                            <span class="title">Reports</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('reports_dasboard')}}" class="nav-link ">
+                                    <span class="title">Reports Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{url('reports')}}" class="nav-link ">
+                                    <span class="title">Reports Per Film</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-            <ul class="page-sidebar-menu  page-header-fixed page-sidebar-menu-hover-submenu " data-keep-expanded="false"
-                data-auto-scroll="true" data-slide-speed="200">
-                <li class="nav-item start active open">
-                    <a href="javascript:;" class="nav-link nav-toggle">
-                        <i class="icon-home"></i>
-                        <span class="title">Menu</span>
-                        <span class="selected"></span>
-                        <span class="arrow open"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="nav-item start ">
-                            <a href="{{url('moderator')}}" class="nav-link ">
-                                <i class="icon-bar-chart"></i>
-                                <span class="title">Dashboard</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link nav-toggle">
-                        <i class="icon-film"></i>
-                        <span class="title">Film Management</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="nav-item  ">
-                            <a href="{{url('films')}}" class="nav-link ">
-                                <span class="title">All Films</span>
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a href="{{url('ratedfilms')}}" class="nav-link ">
-                                <span class="title">Rated Films</span>
-                            </a>
-                        </li>
-                        <li class="nav-item ">
-                            <a href="{{url('moderator/new')}}" class="nav-link nav-toggle">
-                                <span class="title">Assign Examiner to Film for Synopsis Capture</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link nav-toggle">
-                        <i class="icon-film"></i>
-                        <span class="title">Film Moderation</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="nav-item  ">
-                            <a href="{{url('rated')}}" class="nav-link ">
-                                <span class="title">Moderated Films</span>
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a href="{{url('unrated')}}" class="nav-link ">
-                                <span class="title">Non Moderated Fims</span>
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a href="{{url('declined')}}" class="nav-link ">
-                                <span class="title">Declined Films</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link nav-toggle">
-                        <i class="icon-users"></i>
-                        <span class="title">User Management</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="nav-item  ">
-                            <a href="{{url('musers')}}" class="nav-link ">
-                                <span class="title">System Users</span>
-                            </a>
-                        </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="fa fa-cogs"></i>
+                            <span class="title">Settings</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('films/synopsis')}}" class="nav-link ">
+                                    <span class="title">Set Films Synopsis Examiners</span>
+                                </a>
+                            </li>
+                            <li class="nav-item start active open">
+                                <a href="{{url('auditlogs')}}" class="nav-link nav-toggle">
+                                    <i class="icon-list"></i>
+                                    <span class="title">Audit Logs</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @elseif (Auth::user()->GroupID == 2)
+                    <li class="nav-item start active open">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-home"></i>
+                            <span class="title">Menu</span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item start ">
+                                <a href="{{url('dashboard')}}" class="nav-link ">
+                                    <i class="icon-bar-chart"></i>
+                                    <span class="title">Dashboard</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-user"></i>
+                            <span class="title">User Management</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('users')}}" class="nav-link ">
+                                    <span class="title">System Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{url('usergroups')}}" class="nav-link ">
+                                    <span class="title">User Groups</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-film"></i>
+                            <span class="title">Film Management</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('films')}}" class="nav-link ">
+                                    <span class="title">All Films</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{url('ratedfilms')}}" class="nav-link ">
+                                    <span class="title">Rated Films</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-notebook"></i>
+                            <span class="title">Reports</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('reports_dasboard')}}" class="nav-link ">
+                                    <span class="title">Reports Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{url('reports')}}" class="nav-link ">
+                                    <span class="title">Reports Per Film</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-                    </ul>
-                </li>
-                <li class="nav-item  ">
-                    <a href="javascript:;" class="nav-link nav-toggle">
-                        <i class="fa fa-cog"></i>
-                        <span class="title">Settings</span>
-                        <span class="arrow"></span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li class="nav-item  ">
-                            <a href="{{url('settings/themes')}}" class="nav-link ">
-                                <span class="title">Themes</span>
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a href="{{url('settings/parameters')}}" class="nav-link ">
-                                <span class="title">Parameters</span>
-                            </a>
-                        </li>
-                        <li class="nav-item  ">
-                            <a href="{{url('auditlogs')}}" class="nav-link ">
-                                <span class="title">Audit Logs</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="fa fa-cogs"></i>
+                            <span class="title">Settings</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('films/synopsis')}}" class="nav-link ">
+                                    <span class="title">Set Films Synopsis Examiners</span>
+                                </a>
+                            </li>
+                            <li class="nav-item start active open">
+                                <a href="{{url('auditlogs')}}" class="nav-link nav-toggle">
+                                    <i class="icon-list"></i>
+                                    <span class="title">Audit Logs</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @elseif (Auth::user()->GroupID == 3)
+                    <li class="nav-item  ">
+                        <a href="{{url('rater')}}" class="nav-link nav-toggle">
+                            <i class="icon-film"></i>
+                            <span class="title">Films Rating </span>
+                            <span class="arrow"></span>
+                        </a>
+
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{url('rate_poster')}}" class="nav-link nav-toggle">
+                            <i class="icon-picture"></i>
+                            <span class="title">Posters Rating</span>
+                            <span class="arrow"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="{{url('rate_poster')}}" class="nav-link nav-toggle">
+                            <i class="icon-picture"></i>
+                            <span class="title">Posters Rating</span>
+                            <span class="arrow"></span>
+                        </a>
+                    </li>
+                @elseif (Auth::user()->GroupID == 4)
+                    <li class="nav-item start active open">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-home"></i>
+                            <span class="title">Menu</span>
+                            <span class="selected"></span>
+                            <span class="arrow open"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item start ">
+                                <a href="{{url('moderator')}}" class="nav-link ">
+                                    <i class="icon-bar-chart"></i>
+                                    <span class="title">Dashboard</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-film"></i>
+                            <span class="title">Film Management</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('films')}}" class="nav-link ">
+                                    <span class="title">All Films</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{url('assignexaminers')}}" class="nav-link ">
+                                    <span class="title">Film Examiners</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{url('ratedfilms')}}" class="nav-link ">
+                                    <span class="title">Rated Films</span>
+                                </a>
+                            </li>
+                            <li class="nav-item ">
+                                <a href="{{url('moderator/new')}}" class="nav-link nav-toggle">
+                                    <span class="title">Assign Examiner to Film for Synopsis Capture</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-film"></i>
+                            <span class="title">Film Examination</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('mrater')}}" class="nav-link ">
+                                    <span class="title">Unexamined Films</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{url('mposter')}}" class="nav-link ">
+                                    <span class="title">Unexamined Posters</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-film"></i>
+                            <span class="title">Film Moderation</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('rated')}}" class="nav-link ">
+                                    <span class="title">Moderated Films</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{url('unrated')}}" class="nav-link ">
+                                    <span class="title">Awaiting Moderation</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{url('declined')}}" class="nav-link ">
+                                    <span class="title">Declined Films</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-users"></i>
+                            <span class="title">User Management</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('musers')}}" class="nav-link ">
+                                    <span class="title">System Users</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="fa fa-cog"></i>
+                            <span class="title">Settings</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('settings/themes')}}" class="nav-link ">
+                                    <span class="title">Themes</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{url('settings/parameters')}}" class="nav-link ">
+                                    <span class="title">Parameters</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="{{url('auditlogs')}}" class="nav-link ">
+                                    <span class="title">Audit Logs</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @elseif (Auth::user()->GroupID == 5)
+                    <li class="nav-item  ">
+                        <a href="{{url('client')}}" class="nav-link nav-toggle">
+                            <i class="icon-home"></i>
+                            <span class="title">Dashboard</span>
+                            <span class="arrow active"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-film"></i>
+                            <span class="title">Film Management</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('client_film')}}" class="nav-link ">
+                                    <span class="title">Films</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="fa fa-cog"></i>
+                            <span class="title">Settings</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('client_profile')}}" class="nav-link ">
+                                    <span class="title">My Profile</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @else
+                    <li class="nav-item  ">
+                        <a href="{{url('client')}}" class="nav-link nav-toggle">
+                            <i class="icon-home"></i>
+                            <span class="title">Dashboard</span>
+                            <span class="arrow active"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="icon-film"></i>
+                            <span class="title">Film Management</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('client_film')}}" class="nav-link ">
+                                    <span class="title">Films</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="fa fa-cog"></i>
+                            <span class="title">Settings</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{url('client_profile')}}" class="nav-link ">
+                                    <span class="title">My Profile</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                @endif
+
+
             </ul>
-            <!-- END SIDEBAR MENU -->->
+            <!-- END SIDEBAR MENU -->
         </div>
         <!-- END SIDEBAR -->
     </div>

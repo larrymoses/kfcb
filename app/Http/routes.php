@@ -44,7 +44,9 @@ Route::group(['middleware' => ['super']], function () {
 	Route::get('reports/get_list', 'ReportController@getFilmsList');
 	Route::get('films/synopsis', 'FilmController@filmSynopsis');
 	Route::get('assignexaminers', 'FilmController@assignExaminers');
-	Route::get('get_films_examiners/{id}', 'FilmController@getFilmsExaminersByID');
+	Route::get('examiner/{id}', 'FilmController@filmsExaminers');
+	Route::get('examiner/get_films_examiners/{id}','FilmController@getFilmsExaminersByID');
+	Route::post('examiner/remove', 'FilmController@removeExaminer');
 	Route::post('poster', 'FilmController@poster');
 	Route::post('video', 'FilmController@video');
 	Route::get('/profile', 'ProfileController@index');
@@ -90,7 +92,9 @@ Route::group(['middleware' => ['super']], function () {
     Route::post('/relogin', 'ProfileController@relogin');
     Route::post('/savereject', 'ModeratorController@savereject');
     Route::post('/storerate/', 'RatersController@storeRate');
+    Route::post('/storefilmexaminer/', 'filmController@storeFilmExaminer');
     Route::delete('/removerate/', 'RatersController@removerate');
+    Route::delete('/removefilmexaminer/', 'FilmController@removeFilmExaminer');
 	Route::post('/activate', 'UserController@activate');
 	Route::resource('/users', 'UserController');
 	Route::resource('/musers', 'MuserController');

@@ -105,7 +105,10 @@ class RatedController extends Controller
                                 <a href="'.url("certificate/print/".'{{ $id }}').'"   data-id=" {{ $id }}" data-name="{{$name}}" class="class="btn btn-primary viewToEditBtn">View Certificate</button>
                                 </li>
                                 <li>
-                                <a href="'.url("/moderated/report/".'{{ $id }}').'"   data-id=" {{ $id }}" data-name="{{$name}}" class="class="btn btn-primary viewToEditBtn">View Report</button>
+                                <a href="'.url("/reports/detailed/".'{{ $id }}').'"   data-id=" {{ $id }}" data-name="{{$name}}" class="class="btn btn-primary viewToEditBtn">View Report</button>
+                                </li>
+                                <li>
+                                <a href="'.url("/print/report/".'{{ $id }}').'"   data-id=" {{ $id }}" data-name="{{$name}}" class="class="btn btn-primary viewToEditBtn">Print Report</button>
                                 </li>
                                 <li>
                                 <a href="'.url("reviewrate/".'{{ $id }}').'"   data-id=" {{ $id }}" data-name="{{$name}}" class="class="btn btn-primary viewToEditBtn">Review Ratings</button>

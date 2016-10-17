@@ -49,7 +49,7 @@
                 </div>
                 <div class="clearfix"></div>
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                         <div class="portlet light ">
                             <div class="portlet-title blue">
                                 <div class="caption">
@@ -76,7 +76,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                </div>
+                    <div class="row">
+                    <div class="col-md-12">
                         <div class="portlet box green">
                             <div class="portlet-title">
                                 <div class="caption">
@@ -104,81 +106,7 @@
                     </div>
                 </div>
                 <div class="clearfix"></div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="portlet box green">
-                            <div class="portlet-title">
-                                <div class="caption">
-                                    <i class="fa fa-gift"></i>Enter Final Ratings and Comment/Justification </div>
-                            </div>
-                            <div class="portlet-body form">
-                                <!-- BEGIN FORM-->
-                                <form action="#" class="form-horizontal">
-                                    <div class="form-body">
-                                        <div class="row">
-                                            <div class="col-md-12 ">
-                                                <!-- BEGIN Portlet PORTLET-->
-                                                <div class="portlet box blue">
-                                                    <div class="portlet-title">
-                                                        <div class="caption">
-                                                            <i class="fa fa-save"></i>Save and Submit </div>
 
-                                                    </div>
-                                                    <div class="portlet-body">
-                                                        <div class="alert display-none" id="createNotification">
-                                                            <ul id="ul" class="ul"></ul>
-                                                        </div>
-
-                                                        <div class="divider"></div>
-                                                        <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Select Final Rating</label>
-                                                            <div class="col-sm-9">
-                                                                <select id="enterRatingScore" name="enterRatingScore" class="col-md-12 form-control"  required>
-                                                                    <option value="">Select Final Rating...</option>
-                                                                    <option value="ge">GE (General Public Viewership )</option>
-                                                                    <option value="pg">PG (Parental Guidance)</option>
-                                                                    <option value="16">16 (Not Suitable to persons Under 16Yrs )</option>
-                                                                    <option value="18">18 (Restricted to persons Above the age of 18)</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        {{--<div class="form-group">--}}
-                                                        {{--<label class="col-sm-3 control-label">Enter Synopsis</label>--}}
-                                                        {{--<div class="col-sm-9">--}}
-                                                        {{--<textarea class="form-control" rows="3" id="enterSynopsis" name="enterSynopsis" required></textarea>--}}
-                                                        {{--</div>--}}
-                                                        {{--</div>--}}
-                                                        <div class="form-group">
-                                                            <label class="col-sm-3 control-label">Enter Comment</label>
-                                                            <div class="col-sm-9">
-                                                                <textarea class="form-control" rows="3" id="enterComment" name="enterSynopsis" required></textarea>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <!-- END Portlet PORTLET-->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-actions">
-                                        <div class="row">
-                                            <div class="col-md-offset-3 col-md-9">
-                                                <!-- <button type="submit" class="btn btn-circle green">Submit</button> -->
-                                                <a href="javascript:;" class="btn green button-submit btn-circle" id="btnSubmitAll"> Submit
-                                                    <i class="fa fa-check"></i>
-                                                </a>
-                                                {{--<a class="btn red btn-outline btn-circle sbold" data-toggle="modal" data-backdrop="static" data-keyboard="false" href="#basic"> Reject Film Rating</a>--}}
-                                                <button type="button" class="btn btn-circle grey-salsa btn-outline">Cancel</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                                <!-- END FORM-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <div id="editNotifications">

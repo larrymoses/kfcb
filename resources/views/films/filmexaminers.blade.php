@@ -39,7 +39,6 @@
                                     <th>Film Length</th>
                                     <th>Country of Origin</th>
                                     <th>Year of Production</th>
-                                    <th>Examiners</th>
                                     <th>Rated</th>
                                     <th>Actions</th>
                                 </tr>
@@ -243,18 +242,7 @@
                     {mData: 'length'},
                     {mData: 'origin'},
                     {mData: 'year_of_production'},
-                    {mData: 'poster'},
                     {mData: 'rated'},
-                    {mData: 'actions'}
-                ]
-            });
-            var fid = document.getElementById('filmExaminerID').value;
-            oTable = $('#filmExaminersTable').DataTable({
-                responsive: true,
-                stateSave: true,
-                "sAjaxSource": "get_films_examiners/" + fid,
-                "aoColumns": [
-                    {mData: 'name'},
                     {mData: 'actions'}
                 ]
             });

@@ -200,7 +200,7 @@ class ModeratorController extends Controller
     {
         $film = Film::find($id);
         $rating=DB::table('ratings')->where('filmID',$id);
-        return View::make('moderator.raters',compact('film','rating'));
+        return View::make('moderator.reviewrates',compact('film','rating'));
     }
 
     public function getraters_reviews($id)
@@ -214,6 +214,32 @@ class ModeratorController extends Controller
         $action='<a data-toggle="modal" href="#static" data-backdrop="static" data-keyboard="false" data-id=" {{ $id }}" data-name="{{$filmname}}" class="btn btn-xs blue viewRating" id="viewRating"> Use as Final Ratings </a>';
         return Datatables::of($films)
             ->editColumn('id',"{{ \$id }}")
+            ->editColumn('ratescore', '@if($ratescore==0)
+                                <span class="badge badge-default">0: GE (General Exhition )</span>
+                            @elseif($ratescore==1)
+                                <span class="badge badge-default">1: GE (General Exhition )</span>
+                            @elseif($ratescore==2)
+                                <span class="badge badge-primary">2: PG (Parental Guidance Recommended)</span>
+                            @elseif($ratescore==3)
+                                <code class="badge badge-success">3: 16 (Not Suitable to persons Under 16Yrs)</code>
+                            @elseif($ratescore==4)
+                                <code class="badge badge-danger">4: 18 (Restricted To Persons above 18Yrs)</code>
+                            @elseif($ratescore==4)
+                                <code class="badge badge-danger">5: R (Restricted)</code>v
+                            @endif')
+            ->editColumn('system', '@if($system==0)
+                                <span class="badge badge-default">0: GE (General Exhition )</span>
+                            @elseif($system==1)
+                                <span class="badge badge-default">1: GE (General Exhition )</span>
+                            @elseif($system==2)
+                                <span class="badge badge-primary">2: PG (Parental Guidance Recommended)</span>
+                            @elseif($system==3)
+                                <code class="badge badge-success">3: 16 (Not Suitable to persons Under 16Yrs)</code>
+                            @elseif($system==4)
+                                <code class="badge badge-danger">4: 18 (Restricted To Persons above 18Yrs)</code>
+                            @elseif($system==4)
+                                <code class="badge badge-danger">5: R (Restricted)</code>v
+                            @endif')
             ->addColumn('actions',$action)
             ->make(true);
     }

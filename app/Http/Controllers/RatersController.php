@@ -291,6 +291,7 @@ class RatersController extends Controller
         ->join('film_examiners', 'films.id', '=', 'film_examiners.filmID')
         ->where('film_examiners.userID',$id)
         ->where('film_examiners.status',0)
+        ->where('films.rated',0)
             ->select('films.*');
         $action = '<a href="' . url("/rate/" . '{{ $id }}') . '"  class="btn btn-primary btn-xs">Start Rate</a>';
         return Datatables::of($films)

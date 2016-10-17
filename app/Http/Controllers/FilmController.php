@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\AuditLog;
 use App\Film;
+use App\FilmExaminer;
 use App\Http\Requests;
 use App\Users;
 use Auth;
@@ -28,10 +29,10 @@ class FilmController extends Controller
      */
     public function index()
     {
-        $genre=DB::table('genres')->lists('name','name');
         $category=DB::table('category')->lists('name','name');
+        $genres=DB::table('genres')->lists('name','name');
         $examiner = DB::table('users')->where('GroupID', 3)->lists('name', 'id');
-        return view('films/index', compact('genre', 'category', 'examiner'));
+        return view('films/index', compact('genres','category', 'examiner'));
     }  
     public function filmSynopsis()
     {
@@ -112,6 +113,12 @@ class FilmController extends Controller
         $users = Users::where('GroupID', 3)->get();
         return view('films.filmexaminers', compact('users'));
     }
+    public function filmsExaminers($id)
+    {
+        $users = Users::where('GroupID', 3)->get();
+        $films=Film::findOrFail($id);
+        return view('films.filmexams', compact('users','films'));
+    }
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -129,7 +136,7 @@ class FilmController extends Controller
         $film->venue = $request->input('venue');
         $film->poster = $request->input('poster');
         $film->year_of_production = $request->input('year_of_production');
-        $film->description = $request->input('description');
+        $film->description = $request->input('name').': From '.$request->input('origin').' By '.$request->input('producer');
         $film->createdby = Auth::User()->id;
         $film->synopsis_examiner = $request->input('examiner');
         $film->save();
@@ -223,28 +230,11 @@ class FilmController extends Controller
         $action = '<div class="btn-group">
                             <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">Action <span class="caret"></span></button>
                             <ul class="dropdown-menu">
-                               <div class="clearfix"></div>
-                               <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-edit" data-id=" {{ $id }}" class="edit">Edit</a></li>
                                 <div class="clearfix"></div>
-                                @if($rated===2)
-                                    <li><a href="' . url("certificate/print/" . '{{ $id }}') . '"   data-id=" {{ $id }}" data-name="{{$name}}" class="class="btn btn-primary viewToEditBtn">Film Certificate</button></li>
+                                @if($rated==0)
+                                    <li><a href="' . url("examiner/" . '{{ $id }}') . '"   data-id=" {{ $id }}" data-name="{{$name}}" class="class="btn btn-primary viewToEditBtn">View/Assign Examiner</button></li>
                                 @endif
-                                <div class="clearfix"></div>
-                                @if($posterrated==1)
-                                    <li><a href="' . url("certificate/poster/" . '{{ $id }}') . '"   data-id=" {{ $id }}" data-name="{{$name}}" class="class="btn btn-primary viewToEditBtn">Poster Certificate</button></li>
-                                @endif
-                                <div class="clearfix"></div>
-                                @if($rated===0)
-                                <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-upload" data-id=" {{ $id }}" data-name="{{$name}}" data-sname="{{$name}}" class="upload">Upload Film</a></li>
-                                    @if($poster=="Yes")
-                                        @if($posteruploaded==0)
-                                        <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-poster" data-id=" {{ $id }}" data-name="{{$name}}" class="poster">Upload Poster</a></li>
-                                        @elseif($posteruploaded==1)
-                                        <li><a href="#" data-toggle="modal" data-target=".bs-example-modal-poster" data-id=" {{ $id }}" data-name="{{$name}}" class="poster">Update Poster</a></li>
-                                    @endif
-                                    @endif
-                                @endif
-                                <div class="clearfix"></div>
+                                <div class="clearfix"></div>                               
                             </ul>
                         </div>';
         $films = DB::table('films');
@@ -258,9 +248,6 @@ class FilmController extends Controller
                             @elseif($rated==3)
                                 <code class="badge badge-danger">Rectected</code>
                             @endif')
-            ->editColumn('poster', '
-                                    <button data-toggle="modal" data-target=".bs-example-modal-viewexaminers" data-id=" {{ $id }}" data-name="{{$name}}" class="btn btn-circle btn-success btn-xs viewexaminers">View Examiners</button>
-                            ')
             ->editColumn('id', "{{ \$id }}")
             ->addColumn('actions', $action)
             ->make(true);
@@ -284,22 +271,98 @@ class FilmController extends Controller
     public function getFilmsExaminersByID($id)
     {
         $films = DB::table('users')
-            ->join('film_examiners', 'users.id', '=', 'film_examiners.userID')
-            ->where('film_examiners.filmID', $id)
-            ->select('users.name', 'film_examiners.*');
-        $action = '<button data-toggle="modal" data-target=".bs-example-modal-removeexaminer" data-id=" {{ $id }}" data-name="{{$name}}" class="btn btn-danger btn-xs btn-circle removeexaminer">Remove</button>';
-
+            ->where('GroupID', 3);
+        $action='<div class="mt-checkbox-list"><input type="checkbox" id="checkMe" class="checkMe" data-id=" {{ $id }}" data-name="{{$name}}" data-token="{{ csrf_token() }}" ></div>';
         return Datatables::of($films)
             ->editColumn('id',"{{ \$id }}")
             ->addColumn('actions',$action)
             ->make(true);
     }
+    public function storeFilmExaminer(Request $request)
+    {
+        $rate = FilmExaminer::firstOrNew(array('userID' => Input::get('userID'),'filmID' => Input::get('filmID')));
+        $rate->filmID = $request->input('filmID');
+        $rate->userID = $request->input('userID');
+        $rate->status =0;
+        $rate->save();
 
+        $logs=new AuditLog();
+        $logs->username =Auth::User()->username;
+        $logs->activity ="Added Parameter <code> ".$request->input('name')."</code>";
+        $logs->status ="1";
+        $logs->userID =Auth::User()->id;
+        $logs->save();
+        return response()->json([
+            'success'=>false,
+            'status'=>'00',
+            'message'=>'<code>'.$request->input('name').'</code> Saved'
+        ]);
+    }
+    public function removeFilmExaminer(Request $request)
+    {
+        $filmID = $request->input('filmID');
+        $name = $request->input('name');
+        $userID =Auth::User()->id;
+
+        if(DB::table('film_examiners')
+            ->where('filmID',$filmID )
+            ->where('userID',$userID)
+            ->delete()){
+            $logs=new AuditLog();
+            $logs->username =Auth::User()->username;
+            $logs->activity ="Deleted Examiner <code> ".$request->input('name')."</code>";
+            $logs->status ="1";
+            $logs->userID =Auth::User()->id;
+            $logs->save();
+            return response()->json([
+                'success'=>false,
+                'status'=>'00',
+                'message'=>'<code>'.$name.'</code> Deleted'
+            ]);
+        }
+        else{
+            $logs=new AuditLog();
+            $logs->username =Auth::User()->username;
+            $logs->activity ="Delete Examiner <code> ".$request->input('name')."</code>";
+            $logs->status ="0";
+            $logs->userID =Auth::User()->id;
+            $logs->save();
+            return response()->json([
+                'success'=>false,
+                'status'=>'01',
+                'message'=>'<code>'.$name.'</code> Not Deleted'
+            ]);
+        }
+
+
+    }
     //get the bank details by id
     public function getEditData($id)
     {
         $group=Film::find($id);
         return json_encode($group);
+    }
+    public function removeExaminer(Request $request)
+    {
+       $filmID=$request->input('filmID');
+       $userID=$request->input('userID');
+      //  DB::table('film_examiners')->where('userID', '=', $userID)->where('filmID', '=', $filmID)->delete();
+        if(DB::table('film_examiners')
+            ->where('filmID',$filmID )
+            ->where('userID',$userID)
+            ->delete()){
+            return response()->json([
+                'success'=>true,
+                'status'=>'00',
+                'message' =>' Deleted Successfully'
+            ]);
+        }else{
+            return response()->json([
+                'success'=>false,
+                'status'=>'01',
+                'message' =>'Not Successful'
+            ]);
+        }
     }
     public function update(Request $request, $id)
     {

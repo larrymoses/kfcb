@@ -70,52 +70,85 @@
                             <div class="form-group">
                                 <label for="name" class="col-lg-2 col-md-3 control-label"> Name</label>
                                 <div class="col-lg-10 col-md-9">
-                                    <input id="name" min="5" type="text" name="name" class="form-control required" required>
+                                    <input id="name" min="5" type="text" name="name" placeholder="Enter Film Name" class="form-control required" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="cast" class="col-lg-2 col-md-3 control-label"> Film Genre:</label>
                                 <div class="col-lg-10 col-md-9">
-                                    {!! Form::select('genre',[''=>'Select Film Genre']+ $genre, null,array('id'=>'e2','class' => 'form-control required select2'),['required'],'' ) !!}
+                                    <input type="text" name="genre" placeholder="Select Film Genre" list="genrelist" class="form-control required">
+                                    <datalist id="genrelist">
+                                        <?php
+                                        foreach ($genres as $title) {
+                                            echo '<option value="'.$title.'">';
+                                        }
+                                        ?>
+                                    </datalist>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="length" class="col-lg-2 col-md-3 control-label"> Running Time</label>
                                 <div class="col-lg-10 col-md-9">
-                                    <input id="length" min="5" type="text" name="length" class="form-control required" required>
+                                    <input id="length" min="5" type="text" placeholder="Enter Running time in Minutes" name="length" class="form-control required" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="length" class="col-lg-2 col-md-3 control-label"> Producer/ Director</label>
                                 <div class="col-lg-10 col-md-9">
-                                    <input id="length" min="5" type="text" name="producer" class="form-control required" required>
+                                    <input id="length" min="5" type="text" placeholder="Enter Producer/Director or Film Owner" name="producer" class="form-control required" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="length" class="col-lg-2 col-md-3 control-label"> Venue of Film
                                     Rating</label>
                                 <div class="col-lg-10 col-md-9">
-                                    <input id="length" min="5" type="text" name="venue" class="form-control required"
-                                           required>
+                                    <input id="length" min="5" type="text" name="venue" class="form-control" placeholder="Enter the Venue of Film Sensor"       required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="year_of_production" class="col-lg-2 col-md-3 control-label"> Year of Production</label>
                                 <div class="col-lg-10 col-md-9">
-                                    <input id="year_of_production" min="5" type="text" name="year_of_production" class="form-control required" required>
+                                    <input id="year_of_production" min="5" type="text" placeholder="Enter Year of Product" name="year_of_production" class="form-control required" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="cast" class="col-lg-2 col-md-3 control-label"> Category:</label>
                                 <div class="col-lg-10 col-md-9">
-                                    {!! Form::select('category',[''=>'Select Category of Classification Applied']+ $category,['id'=>'e1'], ['class' => 'form-control required select2'],['required'],'' ) !!}
-                                    {{--<input id="cast" min="5" type="text" name="cast" class="form-control required" required>--}}
+
+                                    <input type="text" name="category" placeholder="Select Film Category" list="categorylist" class="form-control required" id="editGenre">
+                                    <datalist id="categorylist">
+                                        <?php
+                                        foreach ($category as $title) {
+                                            echo '<option value="'.$title.'">';
+                                        }
+                                        ?>
+                                    </datalist>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="origin" class="col-lg-2 col-md-3 control-label"> Country of Origin</label>
                                 <div class="col-lg-10 col-md-9">
-                                    <input id="origin" min="5" type="text" name="origin" class="form-control required" required>
+                                    <input id="origin" list="countries" type="text" name="origin" class="form-control required" required placeholder="Select Country of Origin">
+                                    <datalist id="countries">
+                                        <option value="Afghanistan">
+                                        <option value="Kenya">
+                                        <option value="Albania">
+                                        <option value="Algeria">
+                                        <option value="Andorra">
+                                        <option value="Angola">
+                                        <option value="Antigua &amp; Deps">
+                                        <option value="United Kingdom">
+                                        <option value="United States">
+                                        <option value="Uruguay">
+                                        <option value="Uzbekistan">
+                                        <option value="Vanuatu">
+                                        <option value="Vatican City">
+                                        <option value="Venezuela">
+                                        <option value="Vietnam">
+                                        <option value="Yemen">
+                                        <option value="Zambia">
+                                        <option value="Zimbabwe">
+                                    </datalist>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -132,12 +165,6 @@
                                 <div class="col-lg-10 col-md-9">
                                     {!! Form::select('examiner',[''=>'Select Examiner to enter Synopsis']+ $examiner,['id'=>'e1'], ['class' => 'form-control required select2'],['required'],'' ) !!}
                                     {{--<input id="cast" min="5" type="text" name="cast" class="form-control required" required>--}}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="Description" class="col-lg-2 col-md-3 control-label">Description</label>
-                                <div class="col-lg-10 col-md-9">
-                                    <textarea class="form-control" name="description" id="description" rows="4"></textarea>
                                 </div>
                             </div>
                         </form>
@@ -177,7 +204,15 @@
                                 <div class="form-group">
                                     <label for="cast" class="col-lg-2 col-md-3 control-label"> Film Genre:</label>
                                     <div class="col-lg-10 col-md-9">
-                                        {!! Form::select('genre',[''=>'Select Film Genre']+ $genre, null,array('id'=>'editGenre','class' => 'form-control required select2'),['required'],'' ) !!}
+{{--                                        {!! Form::select('genre',[''=>'Select Film Genre']+ $genre, null,array('id'=>'editGenre','class' => 'form-control required select2'),['required'],'' ) !!}--}}
+                                        <input type="text" name="genre" list="genrelists" class="form-control required" id="editGenre">
+                                        <datalist id="genrelists">
+                                            <?php
+                                            foreach ($genres as $title) {
+                                                echo '<option value="'.$title.'">';
+                                            }
+                                            ?>
+                                        </datalist>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -201,13 +236,40 @@
                                 <div class="form-group">
                                     <label for="cast" class="col-lg-2 col-md-3 control-label"> Category:</label>
                                     <div class="col-lg-10 col-md-9">
-                                        {!! Form::select('category',[''=>'Select Category of Classification Applied']+ $category, null,array('id'=>'editCategory','class' => 'form-control required select2'),['required'],'' ) !!}
+                                        <input type="text" name="category" list="categorylist" class="form-control required" id="editCategory">
+                                        <datalist id="categorylist">
+                                            <?php
+                                            foreach ($category as $title) {
+                                                echo '<option value="'.$title.'">';
+                                            }
+                                            ?>
+                                        </datalist>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="origin" class="col-lg-2 col-md-3 control-label"> Country of Origin</label>
                                     <div class="col-lg-10 col-md-9">
-                                        <input id="editOrigin" min="5" type="text" name="origin" class="form-control required" required>
+                                        <input id="editOrigin" list="countries" type="text" name="origin" class="form-control required" required>
+                                        <datalist id="countries">
+                                            <option value="Afghanistan">
+                                            <option value="Kenya">
+                                            <option value="Albania">
+                                            <option value="Algeria">
+                                            <option value="Andorra">
+                                            <option value="Angola">
+                                            <option value="Antigua &amp; Deps">
+                                            <option value="United Kingdom">
+                                            <option value="United States">
+                                            <option value="Uruguay">
+                                            <option value="Uzbekistan">
+                                            <option value="Vanuatu">
+                                            <option value="Vatican City">
+                                            <option value="Venezuela">
+                                            <option value="Vietnam">
+                                            <option value="Yemen">
+                                            <option value="Zambia">
+                                            <option value="Zimbabwe">
+                                        </datalist>
                                     </div>
                                 </div>
                                 <div class="form-group">
