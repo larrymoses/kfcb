@@ -36,8 +36,9 @@
                                 <tr>
                                     <th>Film Name</th>
                                     <th>Film Length</th>
-                                    <th>Country of Origin</th>
-                                    <th>Year of Production</th>
+                                    <th>Country</th>
+                                    <th>Year</th>
+                                    <th>Created At</th>
                                     <th>Has Poster?</th>
                                     <th>Rated</th>
                                     <th>Actions</th>
@@ -68,14 +69,15 @@
                         <form id="frmCreate" class="form-horizontal" role="form">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                             <div class="form-group">
-                                <label for="name" class="col-lg-2 col-md-3 control-label"> Name</label>
-                                <div class="col-lg-10 col-md-9">
-                                    <input id="name" min="5" type="text" name="name" placeholder="Enter Film Name" class="form-control required" required>
+                                <label for="name" class="col-md-4 control-label"> Film Title</label>
+                                <div class="col-md-8">
+                                    <input id="name" min="5" type="text" name="name" placeholder="Enter Film Title"
+                                           class="form-control required" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="cast" class="col-lg-2 col-md-3 control-label"> Film Genre:</label>
-                                <div class="col-lg-10 col-md-9">
+                                <label for="cast" class="col-md-4 control-label"> Film Genre:</label>
+                                <div class="col-md-8">
                                     <input type="text" name="genre" placeholder="Select Film Genre" list="genrelist" class="form-control required">
                                     <datalist id="genrelist">
                                         <?php
@@ -87,33 +89,37 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="length" class="col-lg-2 col-md-3 control-label"> Running Time</label>
-                                <div class="col-lg-10 col-md-9">
+                                <label for="length" class="col-md-4 control-label"> Running Time</label>
+                                <div class="col-md-8">
                                     <input id="length" min="5" type="text" placeholder="Enter Running time in Minutes" name="length" class="form-control required" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="length" class="col-lg-2 col-md-3 control-label"> Producer/ Director</label>
-                                <div class="col-lg-10 col-md-9">
+                                <label for="length" class="col-md-4 control-label"> Producer/ Director</label>
+                                <div class="col-md-8">
                                     <input id="length" min="5" type="text" placeholder="Enter Producer/Director or Film Owner" name="producer" class="form-control required" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="length" class="col-lg-2 col-md-3 control-label"> Venue of Film
+                                <label for="length" class="col-md-4 control-label"> Venue of Film
                                     Rating</label>
-                                <div class="col-lg-10 col-md-9">
-                                    <input id="length" min="5" type="text" name="venue" class="form-control" placeholder="Enter the Venue of Film Sensor"       required>
+                                <div class="col-md-8">
+                                    <input id="length" min="5" type="text" name="venue" class="form-control"
+                                           placeholder="Enter the Venue of Film Sensor" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="year_of_production" class="col-lg-2 col-md-3 control-label"> Year of Production</label>
-                                <div class="col-lg-10 col-md-9">
-                                    <input id="year_of_production" min="5" type="text" placeholder="Enter Year of Product" name="year_of_production" class="form-control required" required>
+                                <label for="year_of_production" class="col-md-4 control-label"> Year of
+                                    Production</label>
+                                <div class="col-md-8">
+                                    <input id="year_of_production" min="5" type="text"
+                                           placeholder="Enter Year of Production" name="year_of_production"
+                                           class="form-control required" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="cast" class="col-lg-2 col-md-3 control-label"> Category:</label>
-                                <div class="col-lg-10 col-md-9">
+                                <label for="cast" class="col-md-4 control-label"> Category:</label>
+                                <div class="col-md-8">
 
                                     <input type="text" name="category" placeholder="Select Film Category" list="categorylist" class="form-control required" id="editGenre">
                                     <datalist id="categorylist">
@@ -126,8 +132,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="origin" class="col-lg-2 col-md-3 control-label"> Country of Origin</label>
-                                <div class="col-lg-10 col-md-9">
+                                <label for="origin" class="col-md-4 control-label"> Country of Origin</label>
+                                <div class="col-md-8">
                                     <input id="origin" list="countries" type="text" name="origin" class="form-control required" required placeholder="Select Country of Origin">
                                     <datalist id="countries">
                                         <option value="Afghanistan">
@@ -152,8 +158,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="origin" class="col-lg-2 col-md-3 control-label"> Has Poster?</label>
-                                <div class="col-lg-10 col-md-9">
+                                <label for="origin" class="col-md-4 control-label"> Has Poster?</label>
+                                <div class="col-md-8">
                                     <select name="poster" class="form-control required">
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
@@ -161,8 +167,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="cast" class="col-lg-2 col-md-3 control-label"> Team Leader:</label>
-                                <div class="col-lg-10 col-md-9">
+                                <label for="cast" class="col-md-4 control-label"> Team Leader:</label>
+                                <div class="col-md-8">
                                     {!! Form::select('examiner',[''=>'Select Examiner to enter Synopsis']+ $examiner,['id'=>'e1'], ['class' => 'form-control required select2'],['required'],'' ) !!}
                                     {{--<input id="cast" min="5" type="text" name="cast" class="form-control required" required>--}}
                                 </div>
@@ -196,14 +202,14 @@
                             <form class="form-horizontal" id="frmEdit">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                 <div class="form-group">
-                                    <label for="name" class="col-lg-2 col-md-3 control-label"> Name</label>
-                                    <div class="col-lg-10 col-md-9">
+                                    <label for="name" class="col-md-4 control-label"> Name</label>
+                                    <div class="col-md-8">
                                         <input id="editName" min="5" type="text" name="name" class="form-control required" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="cast" class="col-lg-2 col-md-3 control-label"> Film Genre:</label>
-                                    <div class="col-lg-10 col-md-9">
+                                    <label for="cast" class="col-md-4 control-label"> Film Genre:</label>
+                                    <div class="col-md-8">
 {{--                                        {!! Form::select('genre',[''=>'Select Film Genre']+ $genre, null,array('id'=>'editGenre','class' => 'form-control required select2'),['required'],'' ) !!}--}}
                                         <input type="text" name="genre" list="genrelists" class="form-control required" id="editGenre">
                                         <datalist id="genrelists">
@@ -216,26 +222,27 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="length" class="col-lg-2 col-md-3 control-label"> Running Time</label>
-                                    <div class="col-lg-10 col-md-9">
+                                    <label for="length" class="col-md-4 control-label"> Running Time</label>
+                                    <div class="col-md-8">
                                         <input  id="editLength" min="5" type="text" name="length" class="form-control required" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="length" class="col-lg-2 col-md-3 control-label"> Producer/ Director</label>
-                                    <div class="col-lg-10 col-md-9">
+                                    <label for="length" class="col-md-4 control-label"> Producer/ Director</label>
+                                    <div class="col-md-8">
                                         <input id="editProducer" min="5" type="text" name="producer" class="form-control required" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="year_of_production" class="col-lg-2 col-md-3 control-label"> Year of Production</label>
-                                    <div class="col-lg-10 col-md-9">
+                                    <label for="year_of_production" class="col-md-4 control-label"> Year of
+                                        Production</label>
+                                    <div class="col-md-8">
                                         <input id="editYear" min="5" type="text" name="year_of_production" class="form-control required" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="cast" class="col-lg-2 col-md-3 control-label"> Category:</label>
-                                    <div class="col-lg-10 col-md-9">
+                                    <label for="cast" class="col-md-4 control-label"> Category:</label>
+                                    <div class="col-md-8">
                                         <input type="text" name="category" list="categorylist" class="form-control required" id="editCategory">
                                         <datalist id="categorylist">
                                             <?php
@@ -247,8 +254,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="origin" class="col-lg-2 col-md-3 control-label"> Country of Origin</label>
-                                    <div class="col-lg-10 col-md-9">
+                                    <label for="origin" class="col-md-4 control-label"> Country of Origin</label>
+                                    <div class="col-md-8">
                                         <input id="editOrigin" list="countries" type="text" name="origin" class="form-control required" required>
                                         <datalist id="countries">
                                             <option value="Afghanistan">
@@ -273,8 +280,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="origin" class="col-lg-2 col-md-3 control-label"> Has Poster?</label>
-                                    <div class="col-lg-10 col-md-9">
+                                    <label for="origin" class="col-md-4 control-label"> Has Poster?</label>
+                                    <div class="col-md-8">
                                         <select name="poster" id="editPoster" class="form-control required">
                                             <option value="Yes">Yes</option>
                                             <option value="No">No</option>
@@ -282,8 +289,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="Description" class="col-lg-2 col-md-3 control-label">Description</label>
-                                    <div class="col-lg-10 col-md-9">
+                                    <label for="Description" class="col-md-4 control-label">Description</label>
+                                    <div class="col-md-8">
                                         <textarea class="form-control" name="description" id="editDescription" rows="4"></textarea>
                                     </div>
                                 </div>
@@ -461,6 +468,7 @@
                     {mData: 'length'},
                     {mData: 'origin'},
                     {mData: 'year_of_production'},
+                    {mData: 'created_at'},
                     {mData: 'poster'},
                     {mData: 'rated'},
                     {mData: 'actions'}

@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use Anouar\Fpdf\Fpdf;
+use App\Film;
 use App\Http\Requests;
 use Datatables;
-use App\Film;
 use DB;
-use Anouar\Fpdf\Fpdf;
+
 class ReportController extends Controller
 {
     public function __construct()
@@ -24,8 +23,12 @@ class ReportController extends Controller
         $data['rated']=DB::table('films')->where('rated',2)->count(DB::raw('DISTINCT id'));
         $data['declined']=DB::table('films')->where('rated',3)->count(DB::raw('DISTINCT id'));
         $film = Film::find($id);
+        $users=DB::table('films')->join('users','users.id','=','films.moderator')->select('users.name as moderator')->where('films.id',$id)->get();
+        foreach ($users as $user){
+            $moderator=$user->moderator;
+        }
         $rating=DB::table('ratings')->where('filmID',$id);
-        return view('reports.detailed',compact('film','rating','data'));
+        return view('reports.detailed',compact('film','rating','data','moderator'));
     }
     public function printDeclinedReport($id){
         $certID = mt_rand(100000, 999999);
@@ -63,6 +66,10 @@ class ReportController extends Controller
     }
     public function printModeratedReport($id){
         $certID = mt_rand(100000, 999999);
+        $users=DB::table('films')->join('users','users.id','=','films.moderator')->select('users.name as moderator')->where('films.id',$id)->get();
+        foreach ($users as $user){
+            $moderator=$user->moderator;
+        }
         $logo = 'http://www.ku.ac.ke/kutv/wp-content/uploads/2016/06/Kenya-Film-Classification-Board.jpg';
         $films = DB::table('films')->where('id', $id)->get();
         $params = DB::table('rating_params')
@@ -82,10 +89,13 @@ class ReportController extends Controller
         foreach ($films as $film) {
             $filmname= $film->name;
             $rating= $film->rating;
+            $producer= $film->producer;
+            $length= $film->length;
+            $time= $film->updated_at;
         }
-        if($film->rating=='ge'){
+        if($film->rating=='ge'||$film->rating=='GE'){
             $reportSubtitle="Suitable for general family viewing. Works in this category are suitable for all ages as they contain no content considered harmful or disturbing to even children.";
-        }elseif($film->rating=='pg'){
+        }elseif($film->rating=='pg'||$film->rating=='PG'){
             $reportSubtitle="Parental Guidance is advised. This is an advisory category that warns parents that the content might confuse or upset children who consume it alone. While the content may be suitable for children, parents are advised to monitor the content ";
         }elseif($film->rating=='16'){
             $reportSubtitle="It is a legally restrictive category and no person under the age of 16 years is allowed to consume. Themes may be adult and results are not necessarily positive. ";
@@ -136,25 +146,25 @@ class ReportController extends Controller
         $fpdf->SetFont('Times', '', 12);
         $fpdf->Cell(30, 8, 'Director ', '0', 0, 'L');
         $fpdf->SetFont('Times', 'B', 12);
-        $fpdf->Cell(70, 8, 'Wafula Wamunyinyi ', '0', 0, 'L');
+        $fpdf->Cell(70, 8, $producer, '0', 0, 'L');
         $fpdf->SetFont('Times', '', 12);
         $fpdf->Ln(8);
         $fpdf->Cell(30, 8, 'Film Type ', '0', 0, 'L');
         $fpdf->SetFont('Times', 'B', 12);
         $fpdf->Cell(70, 8, 'Movie ', '0', 0, 'L');
         $fpdf->SetFont('Times', '', 12);
-        $fpdf->Cell(30, 8, 'Running Time ', '0', 0, 'L');
+        $fpdf->Cell(30, 8, 'Running Time', '0', 0, 'L');
         $fpdf->SetFont('Times', 'B', 12);
-        $fpdf->Cell(70, 8, "120 ".'Minutes ', '0', 0, 'L');
+        $fpdf->Cell(70, 8, $length, '0', 0, 'L');
         $fpdf->SetFont('Times', '', 12);
         $fpdf->Ln(8);
         $fpdf->Cell(30, 8, 'Moderator: ', '0', 0, 'L');
         $fpdf->SetFont('Times', 'B', 12);
-        $fpdf->Cell(70, 8, 'Redempta Modi '.$rating, '0', 0, 'L');
+        $fpdf->Cell(70, 8, $moderator, '0', 0, 'L');
         $fpdf->SetFont('Times', '', 12);
         $fpdf->Cell(30, 8, 'Classified Date: ', '0', 0, 'L');
         $fpdf->SetFont('Times', 'B', 12);
-        $fpdf->Cell(70, 8, date('d-M-Y'), '0', 0, 'L');
+        $fpdf->Cell(70, 8, date('d M Y',strtotime($time)), '0', 0, 'L');
         $fpdf->Ln(11);
         $fpdf->SetFont('Times', 'BU', 14);
         $fpdf->SetTextColor(10,255,10);

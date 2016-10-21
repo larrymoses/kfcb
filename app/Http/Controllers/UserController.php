@@ -66,6 +66,7 @@ class UserController extends Controller
             ]);
         }
         else{
+            $rand = substr(md5(microtime()), rand(0, 26), 5);
             $user = new Users();
             $user->first_name = $request->input('firstname');
             $user->last_name = $request->input('lastname');
@@ -74,7 +75,7 @@ class UserController extends Controller
             $user->email = $request->input('email');
             $user->phone = $request->input('phone');
             $user->GroupID = $request->input('GroupID');
-            $user->password = bcrypt('abc123');
+            $user->password = bcrypt($rand);
             $user->createdby = Auth::User()->id;
             $user->save();
 
@@ -84,11 +85,11 @@ class UserController extends Controller
                 $logs->status ="1";
                 $logs->userID =Auth::User()->id;
                 $logs->save();
-            $data = array('email'=>$request->input('email'),'password'=>'abc123');
+            $data = array('email' => $request->input('email'), 'password' => $rand);
             Mail::send('emails.signup', ['data'=>$data], function($message)use ($request) {
-                $message->to($request->input('email'), $request->input('firstname').' '.$request->input('lastname'))->subject('Success Chama Registration');
-                $message->cc('lkiprop@flag42.com','Chama System');
-                $message->from('noreply@chamatrak.com','Chama System');
+                $message->to($request->input('email'), $request->input('firstname') . ' ' . $request->input('lastname'))->subject('KFCB Rating Portal Registration');
+                $message->cc('kiprop.larry@gmail.com', 'KFCB Rating Portal');
+                $message->from('noreply@kfcb.com', 'KFCB Rating Portal');
             });
             return response()->json([
                 'success'=>false,

@@ -47,7 +47,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="clearfix"></div>
                 <div class="row">
                     <div class="col-md-12">
                         <div class="portlet light ">
@@ -77,7 +76,7 @@
                         </div>
                     </div>
                 </div>
-                    <div class="row">
+                <div class="row">
                     <div class="col-md-12">
                         <div class="portlet box green">
                             <div class="portlet-title">
@@ -105,8 +104,63 @@
                         </div>
                     </div>
                 </div>
-                <div class="clearfix"></div>
-
+                <div class="row">
+                    <div class="col-md-12 ">
+                        <!-- BEGIN Portlet PORTLET-->
+                        <div class="portlet box blue">
+                            <div class="portlet-title">
+                                <div class="caption">
+                                    <i class="fa fa-save"></i>Save and Submit
+                                </div>
+                            </div>
+                            <div class="portlet-body">
+                                <form id="form2" class="form-horizontal form-bordered">
+                                    <div class="alert display-none" id="createNotification">
+                                        <ul id="ul" class="ul"></ul>
+                                    </div>
+                                    <div class="form-group">
+                                        <span class="col-sm-6 control-label">System Suggested Rating is:</span>
+                                        <div class="col-sm-6">
+                                            <span class="text-danger text-bold" id="sysRating">0 </span>:<span class="text-danger text-bold" id="sysRatingWords">GE</span>
+                                        </div>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Select Final Rating</label>
+                                        <div class="col-sm-9">
+                                            <select id="enterRatingScore" name="enterRatingScore" class="col-md-12 form-control"  required>
+                                                <option value="">Select Final Rating...</option>
+                                                <option value="GE">1 GE (General Exhition )</option>
+                                                <option value="PG">2 PG (Parental Guidance Recommended)</option>
+                                                <option value="16">3 16 (Not Suitable to persons Under 16Yrs)</option>
+                                                <option value="18">4 18 (Restricted To Persons above 18Yrs)</option>
+                                                <option value="R">5 R (Restricted)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-3 control-label">Enter Justification</label>
+                                        <div class="col-sm-9">
+                                            <textarea class="form-control" rows="3" id="enterComment" name="enterSynopsis" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-md-offset-3 col-md-9">
+                                                <button type="reset" class="btn default button-previous">
+                                                    <i class="fa fa-angle-left"></i> Back </button>
+                                                <a href="javascript:;" class="btn green button-submit" id="btnSubmitAll"> Submit
+                                                    <i class="fa fa-check"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END Portlet PORTLET-->
+                    </div>
+                </div>
             </div>
 
             <div id="editNotifications">
@@ -152,6 +206,7 @@
                             <button type="button" class="btn dark btn-outline" data-dismiss="modal">Close</button>
                             <button type="button" class="btn green" id="btnSaveReject">Save changes</button>
                         </div>
+                    </div>
                 </form>
             </div>
             <!-- /.modal-content -->
@@ -288,7 +343,7 @@
                                 createNotification.hide().find('#ul').empty();
                                 $.each(data.errors,function(index,errors){
                                     createNotification.html('<div class="alert alert-danger">'+'<li>'+data.errors+'</li>' +'</div>');
-                                })
+                                });
                                 createNotification.show();
                             }
                             break;
@@ -332,7 +387,7 @@
                                 createNotification.hide().find('#ul').empty();
                                 $.each(data.errors,function(index,error){
                                     createNotification.html('<div class="alert alert-danger">'+'<li>'+data.error+'</li>' +'</div>');
-                                })
+                                });
                                 createNotification.show();
                             }
                             break;
@@ -343,7 +398,6 @@
                             break;
                         default :
                             alert("do nothing");
-
                     }
                 }
             });

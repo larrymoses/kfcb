@@ -10,7 +10,7 @@
 <body class=" login">
 <div class="col-md-6 col-md-offset-3">
     <h2>Account Creation</h2>
-    You have been added to ChamaTrak, use the following credentials to <a href="{{url('/')}}">login</a><br>
+    You have been added to KFCB Portal, use the following credentials to <a href="{{url('/')}}">login</a><br>
     <label>Username:</label>{{$data['email']}}<br>
     <label>Password:</label>{{$data['password']}}<br>
 </div>

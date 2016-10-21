@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\AuditLog;
 use App\Http\Requests;
 use App\ThemeParam;
+use App\Themesd;
 use Auth;
 use Datatables;
 use DB;
@@ -69,7 +70,7 @@ class SettingsController extends Controller
     }
     public function getThemes()
     {
-        $themes = Theme::all();
+        $themes = Themesd::all();
         $action='<div class="btn-group">
                             <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">Action <span class="caret"></span></button>
                             <ul class="dropdown-menu">
@@ -86,7 +87,7 @@ class SettingsController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:themes|max:255',
         ]);
-        $film = new Theme();
+        $film = new Themesd();
         $film->name = $request->input('name');
         $film->description = $request->input('description');
         $film->createdby = Auth::User()->id;

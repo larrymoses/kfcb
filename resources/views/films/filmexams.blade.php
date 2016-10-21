@@ -25,10 +25,12 @@
                     <!-- BEGIN TAB PORTLET-->
                     <div class="portlet light ">
                         <div class="portlet-title">
-                            <a class="btn green btn-outline sbold uppercase" id="create" href="#" data-toggle="modal" data-target="#createModal" data-backdrop="static" data-keyboard="false">
-                                <i class="fa fa-plus "></i> Create New
+                            {{--<a href="#" class="useThis btn btn-primary btn-circle btn-xs " data-toggle="modal" data-target=".bs-example-modal-deactivate" data-id="{{ $id }}" data-name="{{$name}}" >Select Examiner </a>--}}
+                            <a class="btn green btn-outline sbold uppercase" id="create" href="#" data-toggle="modal"
+                               data-target=".bs-example-modal-deactivate" data-backdrop="static" data-keyboard="false">
+                                <i class="fa fa-plus "></i> assign New
                             </a>
-                            <span class="red sbold uppercase">
+                            <span class="btn red sbold uppercase col-md-offset-3"><i class="fa fa-film "></i>
                                 {{$films->name}}</span>
                             <button class="btn blue btn-outline sbold pull-right" onclick="window.print()"><span
                                         class="fa fa-print"></span></button>
@@ -52,33 +54,65 @@
         </div>
     </div>
     {{--Group Deactivate Windows--}}
-    <div class="modal fade bs-example-modal-remove"  tabindex="-1" role="dialog" data-backdrop="static">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header panel panel-success">
-                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">x</button>
-                        <h4 class="modal-title">Remove User </h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="alert" id="removeNotification" style="display: none;">
-                            <ul id="ul" class="ul">    </ul>
+    <div class="modal fade bs-example-modal-deactivate" id="" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header ">
+                    <button data-dismiss="modal" class="close btn-circle" type="button">x</button>
+                    <h4 class="modal-title">Film Examiners</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-success">
+                        <div class="panel-body">
+                            <div class="alert" id="deactivateNotification" style="display: none;">
+                                <ul id="ul" class="ul"></ul>
+                            </div>
+
+                            <form id="frmDeactivate" class="form-horizontal form-bordered">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                                <input type="hidden" name="deactivateID"/>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <p> Select Examiner to enter film synopsis for <code
+                                                    id="filmName">{{$films->name}}</code></p>
+                                        <input type="hidden" id="selectFilmID" name="filmID">
+                                    </div>
+                                    <div class="panel-body">
+                                        <table class="display table table-striped table-bordered responsive">
+                                            <thead>
+                                            <tr>
+                                                <th>Examiners Name</th>
+                                                <th>Group</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                            </thead>
+                                            @foreach($users as $usr)
+                                                <tr>
+                                                    <td>{{ $usr->name }}</td>
+                                                    <td>{{ $usr->GroupID }}</td>
+                                                    <td>
+                                                        <a href="#" data-toggle="modal"
+                                                           data-target=".bs-example-modal-choose"
+                                                           data-id=" {{ $usr->id }}" id="selectExaminers"
+                                                           data-name="{{$usr->name}}"
+                                                           class="addExaminer btn btn-success  btn-sm btn-circle">Select</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+
+                                        </table>
+                                    </div>
+                                </div><!-- panel -->
+                            </form>
                         </div>
-                        <form id="frmRemove" class="form-horizontal form-bordered">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <p> Are you sure you want to Approve <code><label id="username"></label></code> from Examining <code>{{$films->name}}</code>?</p>
-                                    <input type="hidden" id="userID">
-                                </div>
-                            </div><!-- panel -->
-                        </form>
                     </div>
-                    <div class="modal-footer">
-                        <button type="submit"  id="btnRemove" class="btn btn-success">Delete User</button>
-                        <a href="#" type="button"  class="btn btn-default btnClose" >Close</a>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a type="button" class="btn btn-default" data-dismiss="modal">Close</a>
                 </div>
             </div>
         </div>
+    </div>
     {{--End of Group Deactivate Modal Window--}}
 @endsection
 @section('pagelevel')
@@ -127,115 +161,130 @@
                 }
             });
 
-            oTable = $('#filmExaminersTable').DataTable({
-                responsive: true,
-                stateSave: true,
-                "sAjaxSource": "<?php echo 'get_films_examiners/'.$films->id?>",
-                "aoColumns": [
-                    {mData: 'name'},
-                    {mData: 'actions'}
-                ]
-            });
-        });
-        $(document).on('change', '.checkMe', function () {
-            var name = $(this).data('name'); // get the Name
-            var filmID = "<?php echo $films->id; ?>"; //get film id
-            var userID= $(this).data('id');
-            var token = $(this).data('token');
-            var dataString = {filmID: filmID, userID: userID, name: name, _token: token};
+            drawDataTable1 = function () {
+                oTable = $('#filmExaminersTable').DataTable({
+                    responsive: true,
+                    stateSave: true,
+                    destroy: true,
+                    "sAjaxSource": "<?php echo 'get_films_examiners/' . $films->id?>",
+                    "aoColumns": [
+                        {mData: 'name'},
+                        {mData: 'actions'}
+                    ]
+                });
+            };
 
-            if(this.checked) {
+            drawDataTable1();
+
+            $(document).on('click', '.checkMe', function () {
+                var name = $(this).data('name'); // get the Name
+                var filmID = "<?php echo $films->id; ?>"; //get film id
+                var filmname = "<?php echo $films->name; ?>"; //get film id
+                var userID = $(this).data('id');
+                var token = $(this).data('token');
+                var dataString = {filmID: filmID, userID: userID, name: name, _token: token};
+
+
+                $.ajax({
+                    type: "DELETE",
+                    url: "<?php echo url('removefilmexaminer'); ?>",
+                    data: {_method: 'delete', _token: token, filmID: filmID, userID: userID, name: name},
+                    cache: false,
+                    success: function (data, status) {
+                        alert('Examiner ' + name + ' De-Assigned from film ' + filmname);
+                        drawDataTable1();
+
+                    }
+
+                });
+            });
+            $(document).on("click", ".upload", function () {
+
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                var sname = $(this).data('sname');
+                document.getElementById('videoID').value = id;
+                document.getElementById('videoName').innerHTML = name;
+                document.getElementById('videosName').innerHTML = sname;
+            });
+            $(document).on("click", ".remove", function () {
+                var id = $(this).data('id');
+                var name = $(this).data('name');
+                document.getElementById('userID').value = id;
+                document.getElementById('username').innerHTML = name;
+            });
+            $(document).on("click", ".addExaminer", function () {
+                var userID = $(this).data('id');
+                var username = $(this).data('name');
+                var filmname = "<?php echo $films->name?>";
+                var filmID = "<?php echo $films->id?>";
+                var token = $(this).data('token');
+                var dataString = {filmID: filmID, userID: userID, name: name, _token: token};
                 $.ajax({
                     type: "POST",
                     url: "<?php echo url('storefilmexaminer'); ?>",
                     data: dataString,
                     cache: false,
                     success: function(data, status){
-                        // alert(data.message);
-
+                        alert(username + ' Assigned to ' + filmname);
+                        drawDataTable1();
                     }
                 });
-            }else{
+            });
+            $("#btnRemove").click(function () {
+                var editNotification = $("#removeNotification");
+                editNotification.hide();
+                var frm = $("#frmRemove");
+                var filmID = "<?php echo $films->id ?>";
+                var userID = document.getElementById('userID').value; //Status code for Active
                 $.ajax({
-                    type: "DELETE",
-                    url: "<?php echo url('removefilmexaminer'); ?>",
-                    data: {_method: 'delete', _token :token,filmID: filmID, userID: userID,name:name},
-                    cache: false,
-                    success: function(data, status){
-                        // alert(data.message);
-
+                    method: "POST",
+                    url: "remove",
+                    data: {filmID: filmID, userID: userID},
+                    success: function (data, status) {
+                        switch (status) {
+                            case "success":
+                                if (data.status === '00') {
+                                    frm.hide();
+                                    editNotification.html('<div class="alert alert-success" >' + 'User Successfully <code> Removed </code>' + '</div>');
+                                    editNotification.show();
+                                    $("#btnRemove").hide();
+                                } else if (data.status === '01') {
+                                    editNotification.hide().find('#ul').empty();
+                                    $.each(data.errors, function (index, error) {
+//                                        editNotification.find('#ul').append('<li>'+ data.error +'</li>');
+                                        editNotification.html('<div class="alert alert-danger">' + '<li>' + data.error + '</li>' + '</div>');
+                                    });
+                                    createNotification.show();
+                                }
+                                break;
+                            case "failed":
+                                editNotification.html('<div class="alert alert-danger">' + data.message + ' </div>');
+                                editNotification.show();
+                                frm.hide();
+                                break;
+                            default :
+                                alert("do nothing");
+                        }
                     }
                 });
+            });
+            $("#newClose").click(function () {
+                pageReload();
+            });
+            $("#editClose").click(function () {
+                pageReload();
+            });
+            $("#viewClose").click(function () {
+                pageReload();
+            });
+            $(".btnClose").click(function () {
+                pageReload();
+            });
+
+            function pageReload() {
+                document.location.reload();
             }
         });
-        $(document).on("click", ".upload", function () {
-
-            var id = $(this).data('id');
-            var name = $(this).data('name');
-            var sname = $(this).data('sname');
-            document.getElementById('videoID').value = id;
-            document.getElementById('videoName').innerHTML = name;
-            document.getElementById('videosName').innerHTML = sname;
-        });
-        $(document).on("click", ".remove", function () {
-            var id = $(this).data('id');
-            var name = $(this).data('name');
-            document.getElementById('userID').value = id;
-            document.getElementById('username').innerHTML = name;
-        });
-        $("#btnRemove").click(function () {
-            var editNotification = $("#removeNotification");
-            editNotification.hide();
-            var frm = $("#frmRemove");
-            var filmID= "<?php echo $films->id ?>";
-            var userID = document.getElementById('userID').value; //Status code for Active
-            $.ajax({
-                method: "POST",
-                url: "remove",
-                data: {filmID: filmID,userID:userID},
-                success: function (data, status) {
-                    switch (status) {
-                        case "success":
-                            if (data.status === '00') {
-                                frm.hide();
-                                editNotification.html('<div class="alert alert-success" >' + 'User Successfully <code> Removed </code>' + '</div>');
-                                editNotification.show();
-                                $("#btnRemove").hide();
-                            } else if (data.status === '01') {
-                                editNotification.hide().find('#ul').empty();
-                                $.each(data.errors,function(index,error){
-//                                        editNotification.find('#ul').append('<li>'+ data.error +'</li>');
-                                    editNotification.html('<div class="alert alert-danger">'+'<li>'+data.error+'</li>' +'</div>');
-                                });
-                                createNotification.show();
-                            }
-                            break;
-                        case "failed":
-                            editNotification.html('<div class="alert alert-danger">' + data.message + ' </div>');
-                            editNotification.show();
-                            frm.hide();
-                            break;
-                        default :
-                            alert("do nothing");
-                    }
-                }
-            });
-        });
-        $("#newClose").click(function () {
-            pageReload();
-        });
-        $("#editClose").click(function () {
-            pageReload();
-        });
-        $("#viewClose").click(function () {
-            pageReload();
-        });
-        $(".btnClose").click(function () {
-            pageReload();
-        });
-
-        function pageReload() {
-            document.location.reload();
-        }
     </script>
 @endsection

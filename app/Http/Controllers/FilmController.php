@@ -115,7 +115,10 @@ class FilmController extends Controller
     }
     public function filmsExaminers($id)
     {
-        $users = Users::where('GroupID', 3)->get();
+        $users = Users::where('GroupID', 3)
+            ->orWhere('GroupID', 4)
+            ->orderBy('GroupID', 'asc')
+            ->get();
         $films=Film::findOrFail($id);
         return view('films.filmexams', compact('users','films'));
     }
@@ -199,7 +202,7 @@ class FilmController extends Controller
                                 <div class="clearfix"></div>
                             </ul>
                         </div>';
-        $films = DB::table('films');
+        $films = DB::table('films')->orderBy('created_at', 'desc');
         return Datatables::of($films)
             ->editColumn('rated','@if($rated==0)
                                 <span class="badge badge-default">Awaiting Rating</span>
@@ -221,6 +224,7 @@ class FilmController extends Controller
                                 <span class="badge badge-danger">NO</span>
                             @endif')
             ->editColumn('id',"{{ \$id }}")
+//            ->editColumn('created_at', date("H:i d/m/y", "{{\$created_at}}"))
             ->addColumn('actions',$action)
             ->make(true);
     }
@@ -237,7 +241,7 @@ class FilmController extends Controller
                                 <div class="clearfix"></div>                               
                             </ul>
                         </div>';
-        $films = DB::table('films');
+        $films = DB::table('films')->where('rated', 0);
         return Datatables::of($films)
             ->editColumn('rated', '@if($rated==0)
                                 <span class="badge badge-default">Awaiting Rating</span>
@@ -270,9 +274,11 @@ class FilmController extends Controller
 
     public function getFilmsExaminersByID($id)
     {
-        $films = DB::table('users')
-            ->where('GroupID', 3);
-        $action='<div class="mt-checkbox-list"><input type="checkbox" id="checkMe" class="checkMe" data-id=" {{ $id }}" data-name="{{$name}}" data-token="{{ csrf_token() }}" ></div>';
+        $films = DB::table('film_examiners')
+            ->join('users', 'users.id', '=', 'film_examiners.userID')
+            ->where('film_examiners.filmID', $id)
+            ->select('users.*', 'film_examiners.userID');
+        $action = '<div class="mt-checkbox-list"><a href="#" id="checkMe" class="btn green btn-solid btn-xs sbold uppercase checkMe" data-id=" {{ $id }}" data-name="{{$name}}" data-token="{{ csrf_token() }}" >REMOVE</a></div>';
         return Datatables::of($films)
             ->editColumn('id',"{{ \$id }}")
             ->addColumn('actions',$action)
@@ -302,7 +308,7 @@ class FilmController extends Controller
     {
         $filmID = $request->input('filmID');
         $name = $request->input('name');
-        $userID =Auth::User()->id;
+        $userID = $request->input('userID');
 
         if(DB::table('film_examiners')
             ->where('filmID',$filmID )

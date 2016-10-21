@@ -373,14 +373,10 @@
                             </li>
                             <li class="nav-item  ">
                                 <a href="{{url('assignexaminers')}}" class="nav-link ">
-                                    <span class="title">Film Examiners</span>
+                                    <span class="title">Assign Examiners to Film</span>
                                 </a>
                             </li>
-                            <li class="nav-item  ">
-                                <a href="{{url('ratedfilms')}}" class="nav-link ">
-                                    <span class="title">Rated Films</span>
-                                </a>
-                            </li>
+
                             <li class="nav-item ">
                                 <a href="{{url('moderator/new')}}" class="nav-link nav-toggle">
                                     <span class="title">Assign Examiner to Film for Synopsis Capture</span>
@@ -416,18 +412,34 @@
                         </a>
                         <ul class="sub-menu">
                             <li class="nav-item  ">
-                                <a href="{{url('rated')}}" class="nav-link ">
-                                    <span class="title">Moderated Films</span>
-                                </a>
-                            </li>
-                            <li class="nav-item  ">
                                 <a href="{{url('unrated')}}" class="nav-link ">
                                     <span class="title">Awaiting Moderation</span>
                                 </a>
                             </li>
                             <li class="nav-item  ">
+                                <a href="{{url('rated')}}" class="nav-link ">
+                                    <span class="title">Moderated Films</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item  ">
                                 <a href="{{url('declined')}}" class="nav-link ">
                                     <span class="title">Declined Films</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="javascript:;" class="nav-link nav-toggle">
+                            <i class="fa fa-book"></i>
+                            <span class="title">Reports</span>
+                            <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+
+                            <li class="nav-item  ">
+                                <a href="{{url('ratedfilms')}}" class="nav-link ">
+                                    <span class="title">Reports Per Film</span>
                                 </a>
                             </li>
                         </ul>

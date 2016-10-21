@@ -38,24 +38,15 @@
                                     <tr>
                                         <th>Film Name</th>
                                         <th>Film Length</th>
-                                        <th>Country of Origin</th>
-                                        <th>Year of Production</th>
+                                        <th>Country</th>
+                                        <th>Year</th>
                                         <th>Genre</th>
+                                        <th>Rated At</th>
                                         <th>Producer</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
-                                    <tfoot>
-                                    <tr>
-                                        <th>Film Name</th>
-                                        <th>Film Length</th>
-                                        <th>Country of Origin</th>
-                                        <th>Year of Production</th>
-                                        <th>Genre</th>
-                                        <th>Producer</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                    </tfoot>
+
                             </table>
 
                         </div>
@@ -90,6 +81,7 @@
                     {mData: 'origin'},
                     {mData: 'year_of_production'},
                     {mData: 'genre'},
+                    {mData: 'updated_at'},
                     {mData: 'producer'},
                     {mData: 'actions'}
                 ]

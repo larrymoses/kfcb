@@ -9,7 +9,14 @@
                     <!-- BEGIN TAB PORTLET-->
                     <div class="portlet light ">
                         <div class="portlet-title blue">
-                            <h1><span class="strong font-red text-align-center">FILM RATING REPORT</span></h1>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h1><span class="strong font-red text-align-center">FILM RATING REPORT</span></h1>
+                                </div>
+                                <div class="col-md-3">
+                                    <a class="btn blue btn-outline sbold pull-right" href="{{url('print/report/').'/'.$film->id}}"><span class="fa fa-print"></span></a>
+                                </div>
+                            </div>
                         </div>
                         <input type="hidden" id="entityIDs" value="{{$film->id}}">
                         <div class="portlet-body">
@@ -17,13 +24,13 @@
                                 <div class="col-md-6">
                                     <h4>Film Title: <strong>{{$film->name}}</strong></h4>
                                     <h4>Film Type: <strong>{{$film->category}}</strong></h4>
-                                    <h4>Moderator Name: <strong>Larry Moses</strong></h4>
+                                    <h4>Moderator Name: <strong>{{$moderator}}</strong></h4>
 
                                 </div>
                                 <div class="col-md-6">
-                                    <h4>Director: <strong>{{--{{$film->name}}--}}Jeremy Hartsons</strong></h4>
+                                    <h4>Director: <strong>{{$film->producer,'Walt Disney'}}</strong></h4>
                                     <h4>Duration: <strong>{{$film->length }} Minutes</strong></h4>
-                                    <h4>Classification Date: <strong>Larry Moses</strong></h4>
+                                    <h4>Classification Date: <strong><?php echo  date('D d-m-Y',strtotime($film->updated_at)).' At '.date('H:m',strtotime($film->updated_at)) ?></strong></h4>
                                 </div>
 
                             </div>
@@ -38,10 +45,10 @@
                                         </div>
                                         <div class="portlet-body">
                                             <h2 class="font-green font-bold"><strong>Classification Awarded</strong></h2>
-                                            @if($film->rating=='ge')
+                                            @if($film->rating=='ge'||$film->rating=='GE')
                                                 <img src="{{asset('rating/ge.png')}}"> Suitable for general family viewing. Works in this category are suitable for all ages as
                                                 they contain no content considered harmful or disturbing to even children
-                                            @elseif($film->rating=='pg')
+                                            @elseif($film->rating=='pg'||$film->rating=='PG')
                                                 <img src="{{asset('rating/pg.png')}}">
                                                 Parental Guidance is advised. This is an advisory category that warns parents that the
                                                 content might confuse or upset children who consume it alone. While the content may
@@ -52,7 +59,9 @@
                                             @elseif($film->rating=='18')
                                                 <img src="{{asset('rating/18.png')}}">It is a legally restrictive category and no person under the age of 18 years is allowed to
                                                 consume. Themes may be adult and results are not necessarily positive.
-                                            @elseif($film->rating=='R')
+                                            @elseif($film->rating=='R'||$film->rating=='r')
+                                                <img src="{{asset('rating/18.png')}}">It is a legally restrictive category and no person under the age of 18 years is allowed to
+                                                consume. Themes may be adult and results are not necessarily positive.
                                             @endif
                                         </div>
                                     </div>
@@ -304,7 +313,7 @@
                                 createNotification.hide().find('#ul').empty();
                                 $.each(data.errors,function(index,errors){
                                     createNotification.html('<div class="alert alert-danger">'+'<li>'+data.errors+'</li>' +'</div>');
-                                })
+                                });
                                 createNotification.show();
                             }
                             break;
@@ -348,7 +357,7 @@
                                 createNotification.hide().find('#ul').empty();
                                 $.each(data.errors,function(index,error){
                                     createNotification.html('<div class="alert alert-danger">'+'<li>'+data.error+'</li>' +'</div>');
-                                })
+                                });
                                 createNotification.show();
                             }
                             break;
